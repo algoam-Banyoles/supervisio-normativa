@@ -1,0 +1,50 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Environment / secrets
+.env
+
+# Data files (auto-generated, re-downloadable)
+*.json
+*.csv
+*.db
+*.db-journal
+
+# Downloaded normative content
+normativa_adif/
+normativa_dgc/
+normativa_une/
+normativa_iso/
+normativa/
+chroma_db/
+
+# Binary / large files
+*.pdf
+*.exe
+*.zip
+*.msi
+*.docx
+
+# Specific non-code text files
+SPLITTER_PORTABLE_README.txt
+maq_split_debug.log
+build_splitter_portable.bat
+
+# Project output / reports
+checks/
+
+# Build artifacts
+release_splitter_portable/
+*.spec
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
