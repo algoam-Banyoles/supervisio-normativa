@@ -49,7 +49,8 @@ MAX_RETRIES  = 3
 PRIORITY_IDS = [
     "BOE-A-2017-12902",   # Ley 9/2017 LCSP
     "BOE-A-2011-17887",   # RDL 3/2011 TRLCSP (derogada)
-    "BOE-A-2015-11430",   # Ley 24/2015 (carreteres)
+    "BOE-A-2001-19995",   # RD 1098/2001 Reglament LCAP (parcialment vigent)
+    "BOE-A-2019-15790",   # RDL 14/2019 mesures urgents contractacio
     "BOE-A-1988-18937",   # Ley 25/1988 de Carreteras
     "BOE-A-1994-28285",   # RD 1812/1994 Reglamento General de Carreteras
 ]
@@ -118,7 +119,7 @@ def _classify_estat(meta: dict) -> str:
     if meta.get("fecha_anulacion") or meta.get("derogada"):
         return "DEROGADA"
     estado = str(meta.get("estado", "")).upper()
-    if estado in ("VI", "VIGENTE", "1"):
+    if estado in ("VI", "VIGENTE", "1", "FINALIZADO"):   # "Finalizado" = consolidation complete
         return "VIGENT"
     if estado in ("AN", "ANULADA", "0"):
         return "DEROGADA"
@@ -135,9 +136,17 @@ def _extract_derogada_per(refs: list[dict]) -> str:
 
 def _extract_pdf_url(meta: dict) -> str:
     doc_id = meta.get("id", "")
+    # Try explicit pdf URL from API
     if meta.get("url_pdf"):
         url = meta["url_pdf"]
         return url if url.startswith("http") else f"{BOE_BASE}{url}"
+    # Build consolidated PDF URL from document ID pattern BOE-A-{year}-{num}
+    if doc_id and doc_id.startswith("BOE-A-"):
+        parts = doc_id.split("-")
+        if len(parts) >= 3:
+            year = parts[2]
+            return f"{BOE_BASE}/buscar/pdf/{year}/{doc_id}-consolidado.pdf"
+    # Fallback: HTML viewer page
     if doc_id:
         return f"{BOE_BASE}/buscar/act.php?id={doc_id}"
     return ""
@@ -311,6 +320,11 @@ def search_thematic(
         page = offset // PAGE_SIZE + 1
         print(f"    pagina {page}: {batch_new} noves (total {added})", flush=True)
 
+        # Warn on first page if suspiciously few results (estado=1 filter may be ignored)
+        if offset == 0 and len(items) < 5:
+            print(f"  [WARNING] Possible filtre estado=1 no reconegut — "
+                  f"rebuts {len(items)} resultats. Prova sense filtre si el total sembla baix.")
+
         # Incremental save after each page
         _save_incremental(catalog, save_path)
 
@@ -320,6 +334,47 @@ def search_thematic(
         time.sleep(DELAY)
 
     return added
+
+
+# ─── Merge into normativa_annexes.json ────────────────────────────────────────
+
+def merge_into_annexes(catalog: list[dict], annexes_path: str = "normativa_annexes.json") -> None:
+    """Add newly discovered DEROGADA entries to normativa_annexes.json."""
+    if not os.path.exists(annexes_path):
+        print(f"  [INFO] {annexes_path} no trobat, omitint merge")
+        return
+
+    import shutil
+    backup = annexes_path + ".bak"
+    shutil.copy2(annexes_path, backup)
+
+    with open(annexes_path, encoding="utf-8") as f:
+        annexes = json.load(f)
+
+    existing_derogada = annexes.get("normativa_derogada", [])
+    existing_codis = {e.get("codi", "") for e in existing_derogada}
+
+    added = 0
+    for entry in catalog:
+        if entry["estat"] != "DEROGADA":
+            continue
+        codi = entry.get("id", "") or entry.get("codi", "")
+        if codi in existing_codis:
+            continue
+        existing_derogada.append({
+            "codi": codi,
+            "text": entry.get("text", "")[:200],
+            "derogada_per": entry.get("derogada_per", ""),
+            "observacions": f"Font: BOE OpenData API. {entry.get('observacions','')}".strip()
+        })
+        existing_codis.add(codi)
+        added += 1
+
+    annexes["normativa_derogada"] = existing_derogada
+    with open(annexes_path, "w", encoding="utf-8") as f:
+        json.dump(annexes, f, ensure_ascii=False, indent=2)
+
+    print(f"  normativa_annexes.json actualitzat: +{added} entrades derogades (backup: {backup})")
 
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
@@ -339,7 +394,12 @@ def main(output_dir: str = OUTPUT_DIR) -> None:
     # 1) Priority IDs
     print("\n[1/3] Prioritat: documents individuals")
     for doc_id in PRIORITY_IDS:
-        if doc_id in ("BOE-A-2017-12902", "BOE-A-2011-17887"):
+        if doc_id in (
+            "BOE-A-2017-12902",   # Ley 9/2017 LCSP
+            "BOE-A-2011-17887",   # RDL 3/2011 TRLCSP
+            "BOE-A-2001-19995",   # RD 1098/2001 Reglament LCAP
+            "BOE-A-2019-15790",   # RDL 14/2019 mesures urgents contractacio
+        ):
             cat = "contractes"
         else:
             cat = "carreteres_estat"
@@ -413,6 +473,9 @@ def main(output_dir: str = OUTPUT_DIR) -> None:
     print(f"  Total:       {len(catalog):,}  "
           f"({total_vigent} vigents | {total_derog} derogades | {total_pend} pendents)")
     print(f"  Cataleg:     {CATALOG_PATH}")
+
+    print("\n[Extra] Sincronitzant derogades amb normativa_annexes.json...")
+    merge_into_annexes(catalog)
 
 
 if __name__ == "__main__":
