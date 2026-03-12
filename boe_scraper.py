@@ -116,6 +116,20 @@ def _classify_categoria(materias: list[str]) -> str:
 
 
 def _classify_estat(meta: dict) -> str:
+    # Real BOE /legislacion-consolidada API fields
+    if meta.get("estatus_derogacion") == "S" or meta.get("estatus_anulacion") == "S":
+        return "DEROGADA"
+    if meta.get("vigencia_agotada") == "S":
+        return "DEROGADA"
+    # estado_consolidacion: {"codigo": "3", "texto": "Finalizado"} = VIGENT
+    ec = meta.get("estado_consolidacion")
+    if isinstance(ec, dict):
+        texto = ec.get("texto", "").upper()
+        if "FINALIZADO" in texto or "VIGENTE" in texto:
+            return "VIGENT"
+        if "ANULAD" in texto or "DEROGAD" in texto:
+            return "DEROGADA"
+    # Legacy / thematic-search fields
     if meta.get("fecha_anulacion") or meta.get("derogada"):
         return "DEROGADA"
     estado = str(meta.get("estado", "")).upper()
@@ -123,6 +137,9 @@ def _classify_estat(meta: dict) -> str:
         return "VIGENT"
     if estado in ("AN", "ANULADA", "0"):
         return "DEROGADA"
+    # If we have a fecha_vigencia but no derogation flags, it's still vigent
+    if meta.get("fecha_vigencia") and not meta.get("fecha_anulacion"):
+        return "VIGENT"
     return "PENDENT"
 
 
