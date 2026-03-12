@@ -136,13 +136,8 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2023",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": f"{TERRITORI_BASE}instruccions/2023_01_instruccio_DGIM.pdf",
-        "url_pdf_alternatius": [
-            f"{TERRITORI_BASE}instruccions/instruccio-DGIM-1-2023-codificacio-estudis-projectes.pdf",
-            f"{TERRITORI_BASE}instruccions/2023-01-instruccio-DGIM-codificacio.pdf",
-            f"{TERRITORI_BASE}instruccions/DGIM_1_2023_codificacio_projectes.pdf",
-            f"{TERRITORI_BASE}instruccions/2023_instruccio_DGIM_1_codificacio.pdf",
-        ],
+        "url_pdf": "https://territori.gencat.cat/web/.content/home/serveis/normativa/procediments_i_actuacions_juridiques/instruccions_i_circulars/infraestructures_mobilitat/instruccions/2023-05-instruccio-DGIM-codif-projectes-vdef.pdf",
+        "url_pdf_alternatius": [],
         "observacions": "Clau per verificar codificacio dels projectes supervisats per DGIM",
     },
     {
