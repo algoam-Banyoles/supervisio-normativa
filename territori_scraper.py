@@ -73,8 +73,8 @@ PRIORITY_DOCS: list[dict] = [
         "id": "D-168/2025",
         "codi": "D-168/2025",
         "text": (
-            "Decret 168/2025, de 29 de juliol, de gestió de la seguretat viària "
-            "en les infraestructures viàries de la Generalitat de Catalunya"
+            "Decret 168/2025, de 29 de juliol, de gestio de la seguretat viaria "
+            "en les infraestructures viaries de la Generalitat de Catalunya"
         ),
         "categoria": "seguretat_viaria",
         "estat": "VIGENT",
@@ -93,8 +93,8 @@ PRIORITY_DOCS: list[dict] = [
         "id": "D-190/2016",
         "codi": "D-190/2016",
         "text": (
-            "Decret 190/2016, de 16 de febrer, de gestió de la seguretat viària "
-            "en les infraestructures viàries de la Generalitat de Catalunya"
+            "Decret 190/2016, de 16 de febrer, de gestio de la seguretat viaria "
+            "en les infraestructures viaries de la Generalitat de Catalunya"
         ),
         "categoria": "seguretat_viaria",
         "estat": "DEROGADA",
@@ -120,10 +120,7 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2025",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}instruccions/"
-            "2025-01-instruccio-DGIM-cartografia-BIM.pdf"
-        ),
+        "url_pdf": f"{TERRITORI_BASE}instruccions/2025-01-instruccio-DGIM-cartografia-BIM.pdf",
         "observacions": "Cartografia IFC/BIM per projectes infraestructures DGIM",
     },
     {
@@ -139,11 +136,14 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2023",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}instruccions/"
-            "instruccio-DGIM-1-2023-codificacio-estudis-projectes.pdf"
-        ),
-        "observacions": "Clau per verificar la codificacio dels projectes supervisats",
+        "url_pdf": f"{TERRITORI_BASE}instruccions/2023_01_instruccio_DGIM.pdf",
+        "url_pdf_alternatius": [
+            f"{TERRITORI_BASE}instruccions/instruccio-DGIM-1-2023-codificacio-estudis-projectes.pdf",
+            f"{TERRITORI_BASE}instruccions/2023-01-instruccio-DGIM-codificacio.pdf",
+            f"{TERRITORI_BASE}instruccions/DGIM_1_2023_codificacio_projectes.pdf",
+            f"{TERRITORI_BASE}instruccions/2023_instruccio_DGIM_1_codificacio.pdf",
+        ],
+        "observacions": "Clau per verificar codificacio dels projectes supervisats per DGIM",
     },
     {
         "id": "DGIM-3-2018",
@@ -158,10 +158,10 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2018",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}instruccions/"
-            "instruccio_DGIM_3_2018_despreniments.pdf"
-        ),
+        "url_pdf": f"{TERRITORI_BASE}instruccions/2018_03_instruccio_DGIM.pdf",
+        "url_pdf_alternatius": [
+            f"{TERRITORI_BASE}instruccions/2018-03-instruccio-DGIM-despreniments.pdf",
+        ],
         "observacions": "",
     },
     {
@@ -177,11 +177,26 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2018",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}instruccions/"
-            "instruccio_dgim_01_2018_senyalitzacio.pdf"
-        ),
+        # URL confirmada per cerca web
+        "url_pdf": f"{TERRITORI_BASE}instruccions/2018_01_instruccio_DGIM.pdf",
         "observacions": "",
+    },
+    {
+        "id": "DGIM-3-2017",
+        "codi": "DGIM/03/2017",
+        "text": (
+            "Instruccio DGIM/03/2017 sobre criteris d'abalisament de les obres "
+            "a la xarxa de carreteres de la Generalitat de Catalunya"
+        ),
+        "categoria": "instruccio_tecnica",
+        "estat": "VIGENT",
+        "dogc": None,
+        "data": "2017",
+        "deroga": None,
+        "derogada_per": None,
+        # URL confirmada per cerca web
+        "url_pdf": f"{TERRITORI_BASE}instruccions/2017_03_instruccio_DGIM.pdf",
+        "observacions": "Nova — no estava al cataleg anterior",
     },
     {
         "id": "DGIM-2-2017",
@@ -196,10 +211,10 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2017",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}instruccions/"
-            "instruccio_dgim_2-2017_inventari.pdf"
-        ),
+        "url_pdf": f"{TERRITORI_BASE}instruccions/2017_02_instruccio_DGIM.pdf",
+        "url_pdf_alternatius": [
+            f"{TERRITORI_BASE}instruccions/2017-02-instruccio-DGIM-inventari.pdf",
+        ],
         "observacions": "Elements funcionals: senyalitzacio, barreres, etc.",
     },
     {
@@ -215,10 +230,11 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2016",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}instruccions/"
-            "instruccio_dgimt_1-2016_separadors.pdf"
-        ),
+        "url_pdf": f"{TERRITORI_BASE}instruccions/2016_01_instruccio_DGIMT.pdf",
+        "url_pdf_alternatius": [
+            f"{TERRITORI_BASE}instruccions/2016-01-instruccio-DGIMT-separadors.pdf",
+            f"{TERRITORI_BASE}instruccions/instruccio_dgimt_1-2016_separadors.pdf",
+        ],
         "observacions": "Separadors 2+1 i similars",
     },
     {
@@ -234,11 +250,9 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2019",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}instruccions/"
-            "instruccio_dgim_1-2019_carreteres_2_1.pdf"
-        ),
-        "observacions": "Carreteres 2+1",
+        # URL ja funcionava — no canviar
+        "url_pdf": f"{TERRITORI_BASE}instruccions/instruccio_dgim_1-2019_carreteres_2_1.pdf",
+        "observacions": "Carreteres 2+1. URL confirmada (ja descarregava OK)",
     },
 
     # === CIRCULARS ===
@@ -256,10 +270,11 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2013",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}circulars/"
-            "circular_1-2013_senyalitzacio_accessos.pdf"
-        ),
+        "url_pdf": f"{TERRITORI_BASE}circulars/2013_01_circular_carreteres.pdf",
+        "url_pdf_alternatius": [
+            f"{TERRITORI_BASE}circulars/2013_01_circular_DGIMT.pdf",
+            f"{TERRITORI_BASE}circulars/2013-01-circular-carreteres-senyalitzacio.pdf",
+        ],
         "observacions": "",
     },
     {
@@ -276,11 +291,53 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2012",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}circulars/"
-            "circular_1-12_estudi_basic_seguretat_salut.pdf"
-        ),
+        "url_pdf": f"{TERRITORI_BASE}circulars/2012_01_circular_carreteres.pdf",
+        "url_pdf_alternatius": [
+            f"{TERRITORI_BASE}circulars/2012_01_circular_DGC.pdf",
+            f"{TERRITORI_BASE}circulars/2012-01-circular-carreteres-ESS.pdf",
+        ],
         "observacions": "Rellevant per ESS en contractes de conservacio",
+    },
+    {
+        "id": "CIRCULAR-1-2010",
+        "codi": "Circular 1/2010",
+        "text": (
+            "Circular 1/2010, de 16 de novembre de 2010, sobre criteris d'aplicacio "
+            "de barreres de seguretat metalliques en la xarxa de carreteres "
+            "de la Generalitat de Catalunya"
+        ),
+        "categoria": "circular_tecnica",
+        "estat": "VIGENT",
+        "dogc": None,
+        "data": "2010",
+        "deroga": None,
+        "derogada_per": None,
+        "url_pdf": f"{TERRITORI_BASE}circulars/2010_01_circular_carreteres.pdf",
+        "url_pdf_alternatius": [
+            f"{TERRITORI_BASE}circulars/2010_01_circular_DGC.pdf",
+            f"{TERRITORI_BASE}circulars/2010-01-circular-carreteres-barreres.pdf",
+        ],
+        "observacions": "Nova — no estava al cataleg anterior. Barreres de seguretat metalliques",
+    },
+    {
+        "id": "CIRCULAR-1-2009",
+        "codi": "Circular 1/2009",
+        "text": (
+            "Circular 1/2009, de 15 de maig de 2009, sobre l'adaptacio a les normes "
+            "europees harmonitzades en materia de mescles bituminoses en calent"
+        ),
+        "categoria": "circular_tecnica",
+        "estat": "VIGENT",
+        "dogc": None,
+        "data": "2009",
+        "deroga": None,
+        "derogada_per": None,
+        "url_pdf": f"{TERRITORI_BASE}circulars/2009_01_circular_carreteres.pdf",
+        "url_pdf_alternatius": [
+            f"{TERRITORI_BASE}circulars/2009_01_circular_DGC.pdf",
+            f"{TERRITORI_BASE}circulars/2009-01-circular-carreteres-mescles.pdf",
+        ],
+        "observacions": "Mescles bituminoses en calent. Normes europees harmonitzades",
     },
     {
         "id": "CIRCULAR-3-2005",
@@ -295,10 +352,10 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2005",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}circulars/"
-            "circular_3-2005_tunels.pdf"
-        ),
+        "url_pdf": f"{TERRITORI_BASE}circulars/2005_03_circular_carreteres.pdf",
+        "url_pdf_alternatius": [
+            f"{TERRITORI_BASE}circulars/2005_03_circular_DGC.pdf",
+        ],
         "observacions": "",
     },
     {
@@ -314,10 +371,10 @@ PRIORITY_DOCS: list[dict] = [
         "data": "2005",
         "deroga": None,
         "derogada_per": None,
-        "url_pdf": (
-            f"{TERRITORI_BASE}circulars/"
-            "circular_2-2005_reductors_velocitat.pdf"
-        ),
+        "url_pdf": f"{TERRITORI_BASE}circulars/2005_02_circular_carreteres.pdf",
+        "url_pdf_alternatius": [
+            f"{TERRITORI_BASE}circulars/2005_02_circular_DGC.pdf",
+        ],
         "observacions": "",
     },
 ]
@@ -465,8 +522,12 @@ def process_doc(session: requests.Session, doc: dict) -> dict:
         print(f"  [SKIP]  {doc['id']} (no url_pdf)")
         return entry
 
-    # Build URL list: primary + alternates
-    urls_to_try = [doc["url_pdf"]] + _alternate_urls(doc)
+    # Build URL list: primary + explicit alternates + auto-generated fallbacks
+    urls_to_try = []
+    if doc.get("url_pdf"):
+        urls_to_try.append(doc["url_pdf"])
+    urls_to_try.extend(doc.get("url_pdf_alternatius") or [])
+    urls_to_try.extend(_alternate_urls(doc))
 
     content: bytes | None = None
     used_url = ""
