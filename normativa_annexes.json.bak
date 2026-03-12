@@ -1,0 +1,1062 @@
+{
+  "metadades": {
+    "versio": "1.3",
+    "data_actualitzacio": "2026-03",
+    "ambit": "Projectes constructius d'obra civil — Generalitat de Catalunya",
+    "notes": "Normativa verificada a marc 2026. v1.2: +49 entrades noves detectades al projecte FGC Igualada (normes estructurals, ambiental, ferroviaries, seguretat laboral, ascensors, soroll, paisatge). +1 bloc UNE EPIs ESS. Total: 158 normes UNE EPIs agrupades a A18."
+  },
+  "normativa_derogada": [
+    {
+      "codi": "EHE-08-DEROGADA",
+      "text": "Instrucción de Hormigón Estructural EHE-08 (RD 1247/2008, de 18 de julio)",
+      "estat": "DEROGADA",
+      "derogada_per": "RD 470/2021 (Codi Estructural), en vigor des del 10/11/2021",
+      "observacions": "Per a obres civils amb OE anterior a 10/11/2021: transitòria fins novembre 2024"
+    },
+    {
+      "codi": "EAE-DEROGADA",
+      "text": "Instrucción de Acero Estructural EAE (RD 751/2011, de 27 de mayo)",
+      "estat": "DEROGADA",
+      "derogada_per": "RD 470/2021 (Codi Estructural), en vigor des del 10/11/2021",
+      "observacions": "Derogada conjuntament amb EHE-08"
+    },
+    {
+      "codi": "RD-1942/1993-DEROGAT",
+      "text": "Reglamento de instalaciones de protección contra incendios (RD 1942/1993, de 5 de noviembre)",
+      "estat": "DEROGADA",
+      "derogada_per": "RD 513/2017 (RIPCI), en vigor des del 12/12/2017",
+      "observacions": "Qualsevol referència a RD 1942/1993 en projectes nous és incorrecta"
+    },
+    {
+      "codi": "D-135/1995-DEROGAT",
+      "text": "Decret 135/1995, de 24 de març, Codi d'accessibilitat de Catalunya",
+      "estat": "DEROGADA",
+      "derogada_per": "Decret 209/2023, de 28 de novembre, en vigor des de l'1/03/2024",
+      "observacions": "Disposició transitòria: aplicable a llicències sol·licitades abans del 01/09/2024"
+    },
+    {
+      "codi": "MAM-304/2002-DEROGADA",
+      "text": "Orden MAM/304/2002, de 8 de febrero, operaciones de valorización y eliminación de residuos",
+      "estat": "DEROGADA",
+      "derogada_per": "Llei 7/2022, de 8 d'abril, de residus i sòls contaminants",
+      "observacions": "Qualsevol referència en projectes nous és incorrecta"
+    },
+    {
+      "codi": "RD-1098/2001-PARCIAL",
+      "text": "Real Decreto 1098/2001, de 12 de octubre, Reglamento general de la LCAP",
+      "estat": "PARCIALMENT_VIGENT",
+      "derogada_per": "Llei 9/2017 (LCSP) deroga la LCAP però el Reglament 1098/2001 roman parcialment vigent en allò no incompatible",
+      "observacions": "Verificar article concret citat; algunes disposicions segueixen vigents"
+    },
+    {
+      "codi": "BOE-A-2011-17887",
+      "text": "Real Decreto Legislativo 3/2011, de 14 de noviembre, por el que se aprueba el texto refundido de la Ley de Contratos del Sector Público.",
+      "derogada_per": "",
+      "observacions": "Font: BOE OpenData API."
+    }
+  ],
+  "annexes": [
+    {
+      "id": "A01",
+      "titol": "Antecedents",
+      "normativa": [
+        {
+          "codi": "LCSP-9/2017",
+          "text": "Llei 9/2017, de 8 de novembre, de contractes del sector públic",
+          "articles": [
+            "Art. 231",
+            "Art. 232",
+            "Art. 233"
+          ],
+          "observacions": "Definició del contingut mínim del projecte constructiu"
+        },
+        {
+          "codi": "LOP-3/2007",
+          "text": "Llei 3/2007, de 4 de juliol, de l'obra pública de Catalunya",
+          "articles": [
+            "Art. 18",
+            "Art. 19"
+          ],
+          "observacions": "Requisits de l'ordre d'estudi i antecedents administratius"
+        },
+        {
+          "codi": "D-235/2003",
+          "text": "Decret 235/2003, de 8 d'octubre, del Reglament d'obres, activitats i serveis dels ens locals",
+          "articles": [],
+          "observacions": "Si l'obra afecta àmbit municipal"
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "titol": "Qualitat i Medi Ambient",
+      "normativa": [
+        {
+          "codi": "D-257/2003",
+          "text": "Decret 257/2003, de 21 d'octubre, sobre l'acreditació dels Laboratoris d'Assaigs de la Construcció",
+          "articles": [],
+          "observacions": "Els laboratoris responsables dels assajos han d'estar acreditats"
+        },
+        {
+          "codi": "UNE-EN-ISO-9001",
+          "text": "Norma UNE-EN ISO 9001:2015 — Sistemes de gestió de la qualitat",
+          "articles": [],
+          "observacions": "Marc de referència per al Pla de Control de Qualitat"
+        },
+        {
+          "codi": "UNE-EN-ISO-14001",
+          "text": "Norma UNE-EN ISO 14001:2015 — Sistemes de gestió ambiental",
+          "articles": [],
+          "observacions": "Marc de referència per al Pla de Medi Ambient"
+        },
+        {
+          "codi": "BANC-CRITERIS-2025",
+          "text": "Banc de criteris de control de qualitat d'obra civil d'Infraestructures.cat, versió 2025",
+          "articles": [],
+          "observacions": "Versió vigent per als plans de control de qualitat. OBSOLETA: versió 2024"
+        },
+        {
+          "codi": "L-7/2022",
+          "text": "Llei 7/2022, de 8 d'abril, de residus i sòls contaminants per a una economia circular",
+          "articles": [
+            "Art. 30",
+            "Art. 31"
+          ],
+          "observacions": "Deroga l'Ordre MAM/304/2002. Qualsevol referència a MAM/304/2002 és DEROGADA"
+        },
+        {
+          "codi": "D-64/1995",
+          "text": "Decret 64/1995, de 7 de març, pel qual s'estableixen mesures de prevenció d'incendis forestals",
+          "articles": [],
+          "observacions": "Aplicable si l'obra es troba en zona de risc d'incendi forestal"
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "titol": "Estudis Funcionals",
+      "normativa": [
+        {
+          "codi": "NAP-1-2-1.0",
+          "text": "Norma d'Accessibilitat Provisional NAP 1-2-1.0 d'ADIF — Traçat ferroviari",
+          "articles": [],
+          "observacions": "Per a projectes ferroviaris; verificar versió vigent"
+        },
+        {
+          "codi": "CE-RD-470/2021",
+          "text": "Reial Decret 470/2021, de 29 de juny, Codi Estructural",
+          "articles": [],
+          "observacions": "Vigent des de 10/11/2021. Deroga EHE-08 (RD 1247/2008) i EAE (RD 751/2011). Per a obra civil: plenament obligatori des de novembre 2024"
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "titol": "Planejament i Urbanisme",
+      "normativa": [
+        {
+          "codi": "DL-1/2010",
+          "text": "Decret Legislatiu 1/2010, de 3 d'agost, Text Refós de la Llei d'Urbanisme de Catalunya",
+          "articles": [],
+          "observacions": "Classificació del sòl i normativa urbanística aplicable"
+        },
+        {
+          "codi": "D-305/2006",
+          "text": "Decret 305/2006, de 18 de juliol, Reglament de la Llei d'Urbanisme",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "PDUM",
+          "text": "Pla Director Urbanístic Metropolità (si escau)",
+          "articles": [],
+          "observacions": "Àmbit metropolità de Barcelona"
+        },
+        {
+          "codi": "D-2/2008-URBANISME",
+          "text": "Decret 2/2008, text refos Llei d'Urbanisme",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        }
+      ]
+    },
+    {
+      "id": "A05",
+      "titol": "Inventari d'Edificacions",
+      "normativa": [
+        {
+          "codi": "L-9/1993-PATRIMONI",
+          "text": "Llei 9/1993, de 30 de setembre, del Patrimoni Cultural Català",
+          "articles": [],
+          "observacions": "Verificar si hi ha elements catalogats a l'àmbit"
+        },
+        {
+          "codi": "RD-876/2014",
+          "text": "Reial Decret 876/2014, de 10 d'octubre, Reglament General de Costes",
+          "articles": [],
+          "observacions": "Si les edificacions es troben en zona de domini públic marítim-terrestre"
+        }
+      ]
+    },
+    {
+      "id": "A06",
+      "titol": "Cartografia i Topografia",
+      "normativa": [
+        {
+          "codi": "L-16/2005",
+          "text": "Llei 16/2005, de 27 de desembre, de la informació geogràfica i de l'Institut Cartogràfic de Catalunya",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "RD-1071/2007",
+          "text": "Reial Decret 1071/2007, de 27 de juliol, sistema geodèsic de referència oficial ETRS89",
+          "articles": [],
+          "observacions": "Sistema de referència geodèsic a emprar"
+        }
+      ]
+    },
+    {
+      "id": "A07",
+      "titol": "Arquitectura, Acabats i Detalls",
+      "normativa": [
+        {
+          "codi": "CTE-RD-314/2006",
+          "text": "Reial Decret 314/2006, de 17 de març, Codi Tècnic de l'Edificació (CTE) i actualitzacions",
+          "articles": [
+            "DB-SE",
+            "DB-SI",
+            "DB-SUA",
+            "DB-HE",
+            "DB-HS",
+            "DB-HR"
+          ],
+          "observacions": "Aplicable a edificis i elements arquitectònics"
+        },
+        {
+          "codi": "CAT-ACC-D-209/2023",
+          "text": "Decret 209/2023, de 28 de novembre, pel qual s'aprova el Codi d'accessibilitat de Catalunya",
+          "articles": [],
+          "observacions": "Vigent des de l'1/03/2024. Deroga el Decret 135/1995. Transitòria per a llicències sol·licitades abans del 01/09/2024"
+        },
+        {
+          "codi": "LOE-38/1999",
+          "text": "Llei 38/1999, de 5 de novembre, d'Ordenació de l'Edificació",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "L-13/2014-ACC-CAT",
+          "text": "Llei 13/2014, de 30 d'octubre, d'accessibilitat",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "D-190/2015",
+          "text": "Decret 190/2015, desplegament Llei accessibilitat",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-1371/2007",
+          "text": "Reial Decret 1371/2007, proteccio soroll edificis (CTE DB-HR)",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-1544/2007",
+          "text": "Reial Decret 1544/2007, de 23 de novembre, condicions basiques d'accessibilitat i no discriminacio per a l'acces i la utilitzacio dels mitjans de transport",
+          "articles": [],
+          "observacions": "Accessibilitat en transport public. Aplicable a A07, A09, A11"
+        }
+      ]
+    },
+    {
+      "id": "A08",
+      "titol": "Instal·lacions Ferroviàries",
+      "normativa": [
+        {
+          "codi": "L-38/2015",
+          "text": "Llei 38/2015, de 29 de setembre, del sector ferroviari",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "RD-2387/2004",
+          "text": "Reial Decret 2387/2004, de 30 de desembre, Reglament del sector ferroviari",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "PLECS-FGC",
+          "text": "Plecs de condicions tècniques de Ferrocarrils de la Generalitat de Catalunya (FGC)",
+          "articles": [],
+          "observacions": "Aplicable a instal·lacions en infraestructures FGC; versió vigent"
+        },
+        {
+          "codi": "REBT-RD-842/2002",
+          "text": "Reial Decret 842/2002, de 2 d'agost, Reglament Electrotècnic de Baixa Tensió (REBT)",
+          "articles": [],
+          "observacions": "Per a instal·lacions elèctriques de baixa tensió"
+        },
+        {
+          "codi": "RD-337/2014",
+          "text": "Reial Decret 337/2014, instal.lacions electricitat AT",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-1544/2007",
+          "text": "Reial Decret 1544/2007, de 23 de novembre, condicions basiques d'accessibilitat i no discriminacio per a l'acces i la utilitzacio dels mitjans de transport",
+          "articles": [],
+          "observacions": "Accessibilitat en transport public. Aplicable a A07, A09, A11"
+        }
+      ]
+    },
+    {
+      "id": "A09",
+      "titol": "Instal·lacions no Ferroviàries",
+      "normativa": [
+        {
+          "codi": "REBT-RD-842/2002",
+          "text": "Reial Decret 842/2002, de 2 d'agost, Reglament Electrotècnic de Baixa Tensió (REBT)",
+          "articles": [],
+          "observacions": "Instal·lacions elèctriques generals"
+        },
+        {
+          "codi": "RITE-RD-1027/2007",
+          "text": "Reial Decret 1027/2007, de 20 de juliol, Reglament d'Instal·lacions Tèrmiques als Edificis (RITE) — modificat per RD 1390/2011 i RD 238/2013",
+          "articles": [],
+          "observacions": "Climatització, calefacció i ventilació"
+        },
+        {
+          "codi": "CTE-DB-HE",
+          "text": "CTE Document Bàsic HE — Estalvi d'energia (actualització 2022)",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "CAT-ACC-D-209/2023",
+          "text": "Decret 209/2023, de 28 de novembre, Codi d'accessibilitat de Catalunya",
+          "articles": [],
+          "observacions": "Vigent des de l'1/03/2024. Deroga D-135/1995"
+        },
+        {
+          "codi": "UNE-EN-50365",
+          "text": "UNE-EN 50365 cables baixa tensio",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-50575",
+          "text": "UNE-EN 50575 cables electrics comportament al foc",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "L-13/2014-ACC-CAT",
+          "text": "Llei 13/2014, de 30 d'octubre, d'accessibilitat",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "D-190/2015",
+          "text": "Decret 190/2015, desplegament Llei accessibilitat",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "ITC-LAT-06",
+          "text": "ITC-LAT 06 linies aeries alta tensio",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-1454/2005",
+          "text": "Reial Decret 1454/2005, REBT modificacio",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-337/2014",
+          "text": "Reial Decret 337/2014, instal.lacions electricitat AT",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        }
+      ]
+    },
+    {
+      "id": "A10",
+      "titol": "Instal·lacions de Protecció contra Incendis",
+      "normativa": [
+        {
+          "codi": "CTE-DB-SI",
+          "text": "CTE Document Bàsic SI — Seguretat en cas d'incendi",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "RIPCI-RD-513/2017",
+          "text": "Reial Decret 513/2017, de 22 de maig, Reglament d'instal·lacions de protecció contra incendis (RIPCI)",
+          "articles": [],
+          "observacions": "Vigent des del 12/12/2017. Deroga RD 1942/1993. ATENCIÓ: qualsevol referència a RD 1942/1993 en projectes nous és incorrecta"
+        },
+        {
+          "codi": "NT-INCENDIS-FERROV-1997",
+          "text": "Normes tècniques sobre seguretat contra incendis a la xarxa ferroviària soterrada de Catalunya (1997, Generalitat de Catalunya)",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "ESBORRANY-NT-INCENDIS-2015",
+          "text": "Esborrany en revisió 4 de les Normes tècniques sobre seguretat contra incendis a la xarxa ferroviària soterrada a Catalunya (2015, clau EV.TX-1429)",
+          "articles": [],
+          "observacions": "Document de referència tècnica vigent per a xarxa soterrada"
+        },
+        {
+          "codi": "UNE-EN-50575",
+          "text": "UNE-EN 50575 cables electrics comportament al foc",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "ORDEN-PCI-1319/2018",
+          "text": "Orden PCI/1319/2018, modifica RIPCI annexos",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        }
+      ]
+    },
+    {
+      "id": "A11",
+      "titol": "Instal·lacions de Transport Vertical",
+      "normativa": [
+        {
+          "codi": "RD-355/2018",
+          "text": "Reial Decret 355/2018, de 6 de juny, pel qual s'actualitza el catàleg d'instal·lacions d'ascensors",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "D-UE-2014-33",
+          "text": "Directiva 2014/33/UE del Parlament Europeu i del Consell, relativa als ascensors i components de seguretat",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "UNE-EN-81",
+          "text": "Sèrie de normes UNE-EN 81 — Regles de seguretat per a la construcció i instal·lació d'ascensors",
+          "articles": [],
+          "observacions": "UNE-EN 81-1, 81-2, 81-20, 81-50, 81-70 (accessibilitat)"
+        },
+        {
+          "codi": "CAT-ACC-D-209/2023",
+          "text": "Decret 209/2023, de 28 de novembre, Codi d'accessibilitat de Catalunya",
+          "articles": [],
+          "observacions": "Vigent des de l'1/03/2024. Deroga D-135/1995"
+        },
+        {
+          "codi": "L-13/2014-ACC-CAT",
+          "text": "Llei 13/2014, de 30 d'octubre, d'accessibilitat",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "D-190/2015",
+          "text": "Decret 190/2015, desplegament Llei accessibilitat",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-2291/1985",
+          "text": "Reial Decret 2291/1985, aparells elevacio i manucio",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-1544/2007",
+          "text": "Reial Decret 1544/2007, de 23 de novembre, condicions basiques d'accessibilitat i no discriminacio per a l'acces i la utilitzacio dels mitjans de transport",
+          "articles": [],
+          "observacions": "Accessibilitat en transport public. Aplicable a A07, A09, A11"
+        }
+      ]
+    },
+    {
+      "id": "A12",
+      "titol": "Subministraments Exteriors",
+      "normativa": [
+        {
+          "codi": "REBT-RD-842/2002",
+          "text": "Reial Decret 842/2002, Reglament Electrotècnic de Baixa Tensió",
+          "articles": [],
+          "observacions": "Connexió a la xarxa elèctrica"
+        },
+        {
+          "codi": "RD-1955/2000",
+          "text": "Reial Decret 1955/2000, d'1 de desembre, activitats de transport i distribució d'energia elèctrica",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "RD-140/2003",
+          "text": "Reial Decret 140/2003, de 7 de febrer, criteris sanitaris de la qualitat de l'aigua de consum humà",
+          "articles": [],
+          "observacions": "Subministrament d'aigua potable"
+        }
+      ]
+    },
+    {
+      "id": "A13",
+      "titol": "Integració Urbana i Reposició d'Afeccions a Altres Infraestructures",
+      "normativa": [
+        {
+          "codi": "L-7/1993-CARRETERES-CAT",
+          "text": "Llei 7/1993, de 30 de setembre, de carreteres de Catalunya",
+          "articles": [],
+          "observacions": "Si l'actuació afecta carreteres de la Generalitat"
+        },
+        {
+          "codi": "RD-876/2014",
+          "text": "Reial Decret 876/2014, Reglament General de Costes",
+          "articles": [],
+          "observacions": "Si l'actuació afecta el domini públic marítim-terrestre"
+        },
+        {
+          "codi": "D-130/1998",
+          "text": "Decret 130/1998, reglament zona de policia",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        }
+      ]
+    },
+    {
+      "id": "A14",
+      "titol": "Serveis Afectats",
+      "normativa": [
+        {
+          "codi": "LCSP-9/2017-ART232",
+          "text": "Llei 9/2017, Art. 232 — Gestió de serveis afectats en contractes d'obra",
+          "articles": [
+            "Art. 232"
+          ],
+          "observacions": "Obligació d'identificar i valorar els serveis afectats"
+        }
+      ]
+    },
+    {
+      "id": "A15",
+      "titol": "Estructures",
+      "normativa": [
+        {
+          "codi": "CE-RD-470/2021",
+          "text": "Reial Decret 470/2021, de 29 de juny, Codi Estructural (CE)",
+          "articles": [],
+          "observacions": "Vigent des de 10/11/2021. Deroga EHE-08 (RD 1247/2008) i EAE (RD 751/2011). Per a obra civil: plenament obligatori des de novembre 2024"
+        },
+        {
+          "codi": "EUROCODI-0",
+          "text": "UNE-EN 1990:2023 — Eurocodi 0: Bases de càlcul de les estructures",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "EUROCODI-1",
+          "text": "UNE-EN 1991 — Eurocodi 1: Accions sobre les estructures",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "EUROCODI-2",
+          "text": "UNE-EN 1992 — Eurocodi 2: Disseny d'estructures de formigó",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "EUROCODI-3",
+          "text": "UNE-EN 1993 — Eurocodi 3: Disseny d'estructures d'acer",
+          "articles": [],
+          "observacions": "Si hi ha elements metàl·lics"
+        },
+        {
+          "codi": "EUROCODI-7",
+          "text": "UNE-EN 1997 — Eurocodi 7: Disseny geotècnic",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "EUROCODI-8",
+          "text": "UNE-EN 1998 — Eurocodi 8: Disseny d'estructures per a resistència sísmica",
+          "articles": [],
+          "observacions": "Verificar acceleració sísmica de la zona"
+        },
+        {
+          "codi": "NCSE-02",
+          "text": "Norma de Construcció Sismorresistent NCSE-02 — RD 997/2002",
+          "articles": [],
+          "observacions": "Vigent fins publicació del nou eurocodi sísmic nacional"
+        },
+        {
+          "codi": "IAP-11",
+          "text": "Instrucció sobre les accions a considerar en el projecte de ponts de carretera (IAP-11)",
+          "articles": [],
+          "observacions": "Si hi ha ponts o estructures de pas"
+        },
+        {
+          "codi": "EUROCODI-8-EN1998",
+          "text": "EN 1998 Eurocodi 8 sismoresistencia",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "ISO-1461",
+          "text": "ISO 1461 galvanitzat per immersio en calent",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-1744",
+          "text": "UNE-EN 1744 assaigs propietats quimiques arids",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-36831",
+          "text": "UNE 36831 armadures acer",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-7133",
+          "text": "UNE 7133 ciments assaigs",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-1097",
+          "text": "UNE-EN 1097 assaigs propietats mecaniques arids",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-1367",
+          "text": "UNE-EN 1367 assaigs propietats termiques arids",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-933",
+          "text": "UNE-EN 933 assaigs caracteristiques geometriques arids",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        }
+      ]
+    },
+    {
+      "id": "A16",
+      "titol": "Mesures Correctores d'Impacte Ambiental",
+      "normativa": [
+        {
+          "codi": "L-21/2013",
+          "text": "Llei 21/2013, de 9 de desembre, d'avaluació ambiental",
+          "articles": [],
+          "observacions": "Marc estatal d'avaluació d'impacte ambiental"
+        },
+        {
+          "codi": "L-20/2009",
+          "text": "Llei 20/2009, de 4 de desembre, de prevenció i control ambiental de les activitats (LPCAA)",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "L-7/2022-RESIDUS",
+          "text": "Llei 7/2022, de 8 d'abril, de residus i sòls contaminants per a una economia circular",
+          "articles": [],
+          "observacions": "Deroga Ordre MAM/304/2002"
+        },
+        {
+          "codi": "RD-105/2008",
+          "text": "Reial Decret 105/2008, d'1 de febrer, producció i gestió dels residus de construcció i demolició",
+          "articles": [],
+          "observacions": "Gestió de RCD en obra"
+        },
+        {
+          "codi": "D-64/1995",
+          "text": "Decret 64/1995, de 7 de març, mesures de prevenció d'incendis forestals",
+          "articles": [],
+          "observacions": "Si l'obra es troba en zona forestal o adjacent"
+        },
+        {
+          "codi": "L-16/2002-CONTAMINACIO",
+          "text": "Llei 16/2002, proteccio contra la contaminacio acustica",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "D-176/2009",
+          "text": "Decret 176/2009, avaluacio i gestio soroll ambiental",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "D-130/2003",
+          "text": "Decret 130/2003, Reglament serveis sanejament",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "L-8/2005-PAISATGE",
+          "text": "Llei 8/2005, proteccio, gestio i ordenacio del paisatge",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "L-34/2007-AIRE",
+          "text": "Ley 34/2007, calidad del aire y proteccion atmosfera",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "L-37/2003-SOROLL",
+          "text": "Llei 37/2003, del soroll",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-178/2021",
+          "text": "Reial Decret 178/2021, productes biocides",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "L-6/1988-FORESTAL",
+          "text": "Llei 6/1988, forestal de Catalunya",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "D-172/2008",
+          "text": "Decret 172/2008, avaluacio impacte ambiental",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "D-172/2022",
+          "text": "Decret 172/2022, Cataleg de fauna amenacada",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "L-9/2018-AVA",
+          "text": "Ley 9/2018, avaluacio ambiental modificacio Llei 21/2013",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "L-12/1981-CAT",
+          "text": "Llei 12/1981, normes addicionals proteccio medi ambient",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "L-16/2017-CLIMA",
+          "text": "Llei 16/2017, del canvi climatic",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        }
+      ]
+    },
+    {
+      "id": "A17",
+      "titol": "Estudi de Gestió de Residus de la Construcció i Demolició",
+      "normativa": [
+        {
+          "codi": "RD-105/2008",
+          "text": "Reial Decret 105/2008, d'1 de febrer, pel qual es regula la producció i gestió dels residus de construcció i demolició",
+          "articles": [],
+          "observacions": "Marc normatiu principal de l'EGR"
+        },
+        {
+          "codi": "L-7/2022-RESIDUS",
+          "text": "Llei 7/2022, de 8 d'abril, de residus i sòls contaminants per a una economia circular",
+          "articles": [],
+          "observacions": "Llei marc vigent. Deroga Ordre MAM/304/2002. DETECTAR: 'MAM/304/2002' al plec → NO OK"
+        },
+        {
+          "codi": "D-89/2010-CAT",
+          "text": "Decret 89/2010, de 29 de juny, procediment de gestió dels residus de la construcció a Catalunya",
+          "articles": [],
+          "observacions": "Legislació autonòmica específica de Catalunya"
+        },
+        {
+          "codi": "D-UE-2008-98",
+          "text": "Directiva 2008/98/CE del Parlament Europeu i del Consell, sobre els residus",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "L-22/2011-RESIDUS-ES",
+          "text": "Ley 22/2011, de 28 de julio, de residuos",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "D-1/1997",
+          "text": "Decret 1/1997, disposicio del rebuig dels residus",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        }
+      ]
+    },
+    {
+      "id": "A18",
+      "titol": "Estudi de Seguretat i Salut",
+      "normativa": [
+        {
+          "codi": "RD-1627/1997",
+          "text": "Reial Decret 1627/1997, de 24 d'octubre, disposicions mínimes de seguretat i salut en les obres de construcció",
+          "articles": [],
+          "observacions": "Marc normatiu principal de l'ESS"
+        },
+        {
+          "codi": "L-31/1995",
+          "text": "Llei 31/1995, de 8 de novembre, de prevenció de riscos laborals",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "L-54/2003",
+          "text": "Llei 54/2003, de 12 de desembre, de reforma del marc normatiu de la prevenció de riscos laborals",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "RD-171/2004",
+          "text": "Reial Decret 171/2004, de 30 de gener, coordinació d'activitats empresarials en matèria de PRL",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "RD-485/1997",
+          "text": "Reial Decret 485/1997, de 14 d'abril, sobre disposicions minimes en materia de senyalitzacio de seguretat i salut en el treball",
+          "articles": [],
+          "observacions": "Senyalitzacio de seguretat i salut. Aplicable a l'ESS"
+        },
+        {
+          "codi": "RD-773/1997",
+          "text": "Reial Decret 773/1997, de 30 de maig, sobre disposicions minimes de seguretat i salut relatives a la utilitzacio pels treballadors d'equips de proteccio individual",
+          "articles": [],
+          "observacions": "Equips de proteccio individual (EPIs). Aplicable a l'ESS"
+        },
+        {
+          "codi": "LCSP-9/2017-ESS",
+          "text": "Llei 9/2017, Art. 233.1.f — Estudi de Seguretat i Salut obligatori",
+          "articles": [
+            "Art. 233"
+          ],
+          "observacions": ""
+        },
+        {
+          "codi": "UNE-EN-136",
+          "text": "UNE-EN 136 masques proteccio respiratoria",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-795",
+          "text": "UNE-EN 795 dispositius ancoratge proteccio individual",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-511",
+          "text": "UNE-EN 511 guants proteccio fred",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-355",
+          "text": "UNE-EN 355 absorbidors energia EPI",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-1109/2007",
+          "text": "Reial Decret 1109/2007, llibre de subcontractacio",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-1215/1997",
+          "text": "Reial Decret 1215/1997, equips de treball",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-1435/1992",
+          "text": "Reial Decret 1435/1992, maquines",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "RD-2177/2004",
+          "text": "Reial Decret 2177/2004, treballs en alcada",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-ESS-EPI-BLOC",
+          "text": "Normes UNE-EN de proteccio individual (EPIs) — sèrie completa aplicable a l'ESS",
+          "articles": [],
+          "observacions": "Bloc de normes UNE-EN per a equips de proteccio individual (EPIs) referenciades a l'Estudi de Seguretat i Salut. Inclou: UNE-EN 471, 340, 388, 420, 812, 167, 140, 407, 175, 361, 364, 365, 352, 458 i altres de la serie. Verificar versio vigent de cada norma."
+        }
+      ]
+    },
+    {
+      "id": "A19",
+      "titol": "Safety",
+      "normativa": [
+        {
+          "codi": "NT-INCENDIS-FERROV-1997",
+          "text": "Normes tècniques sobre seguretat contra incendis a la xarxa ferroviària soterrada de Catalunya (1997)",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "ESBORRANY-NT-INCENDIS-2015",
+          "text": "Esborrany en revisió 4 de les Normes tècniques sobre seguretat contra incendis (2015, clau EV.TX-1429)",
+          "articles": [],
+          "observacions": "Document de referència tècnica per a xarxa ferroviària soterrada"
+        },
+        {
+          "codi": "L-38/2015-FERROV",
+          "text": "Llei 38/2015, del sector ferroviari — Títol III: Seguretat ferroviària",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "UNE-EN-50128",
+          "text": "UNE-EN 50128 aplicacions ferroviaries software",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-50129",
+          "text": "UNE-EN 50129 aplicacions ferroviaries seguretat",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-50126",
+          "text": "UNE-EN 50126 fiabilitat i disponibilitat ferroviaria",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        }
+      ]
+    },
+    {
+      "id": "A20",
+      "titol": "Pla de Treballs",
+      "normativa": [
+        {
+          "codi": "LCSP-9/2017-PLA",
+          "text": "Llei 9/2017, Art. 233 — Contingut dels projectes d'obres",
+          "articles": [
+            "Art. 233"
+          ],
+          "observacions": "El pla de treballs ha de ser coherent amb la memòria i l'ESS"
+        }
+      ]
+    },
+    {
+      "id": "A21",
+      "titol": "Organització i Desenvolupament de les Obres",
+      "normativa": [
+        {
+          "codi": "LCSP-9/2017-ORGAN",
+          "text": "Llei 9/2017, Arts. 237-243 — Execució del contracte d'obres",
+          "articles": [
+            "Art. 237",
+            "Art. 238",
+            "Art. 239",
+            "Art. 240"
+          ],
+          "observacions": "Organització de les obres i obligacions del contractista"
+        }
+      ]
+    },
+    {
+      "id": "A22",
+      "titol": "Serveis Afectats",
+      "normativa": [
+        {
+          "codi": "LCSP-9/2017-ART232",
+          "text": "Llei 9/2017, Art. 232 — Gestió de serveis afectats",
+          "articles": [
+            "Art. 232"
+          ],
+          "observacions": "Veure també Annex 14"
+        }
+      ]
+    },
+    {
+      "id": "A23",
+      "titol": "Justificació de Preus",
+      "normativa": [
+        {
+          "codi": "BANC-PREUS-2025",
+          "text": "Banc de preus d'infraestructures d'obra civil d'Infraestructures.cat, versió 2025 actualització 2026-01",
+          "articles": [],
+          "observacions": "Versió vigent obligatòria. OBSOLETES: 2024-06, 2024-03, 2024-01, 2023-06"
+        },
+        {
+          "codi": "BEDEC-2026-01",
+          "text": "Banc BEDEC del ITEC, actualització 2026-01",
+          "articles": [],
+          "observacions": "Banc auxiliar vigent"
+        },
+        {
+          "codi": "LCSP-9/2017-PREUS",
+          "text": "Llei 9/2017, Art. 233.1 — Justificació de preus com a document del projecte",
+          "articles": [
+            "Art. 233"
+          ],
+          "observacions": ""
+        }
+      ]
+    },
+    {
+      "id": "A24",
+      "titol": "Pressupost per a Coneixement de l'Administració",
+      "normativa": [
+        {
+          "codi": "LCSP-9/2017-PCA",
+          "text": "Llei 9/2017, Art. 233 — Pressupost com a document obligatori del projecte",
+          "articles": [
+            "Art. 233"
+          ],
+          "observacions": "Inclou PEM, GG, BI, IVA i, si escau, expropiacions i serveis afectats"
+        },
+        {
+          "codi": "LCSP-9/2017-REVISIO",
+          "text": "Llei 9/2017, Art. 103 (mod. Llei 11/2023) — Revisió de preus",
+          "articles": [
+            "Art. 103"
+          ],
+          "observacions": "Obligatori si termini > 12 mesos o import > llindar"
+        },
+        {
+          "codi": "L-11/2023",
+          "text": "Llei 11/2023, de 8 de maig, de transposició de Directives UE (modifica Art. 103 LCSP)",
+          "articles": [],
+          "observacions": "Modifica el règim de revisió de preus de la LCSP"
+        },
+        {
+          "codi": "RD-1359/2011",
+          "text": "Reial Decret 1359/2011, revisio de preus contractes",
+          "articles": [],
+          "observacions": "Detectat al projecte. Verificar versio vigent."
+        }
+      ]
+    }
+  ]
+}
