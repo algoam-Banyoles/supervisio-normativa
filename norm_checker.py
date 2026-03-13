@@ -102,6 +102,42 @@ IP_CODE_PATTERNS = [
     re.compile(r'Ingress\s+Protection', re.IGNORECASE),
 ]
 
+# ─── False-positive filter for check_all_references ──────────────────────────
+# Applied before adding any regex match to refs_by_key.
+
+# Fragments shorter than this many chars are never real norm references.
+_MIN_REF_LEN = 8
+
+# Measurement/context phrases that are never norm codes.
+_NOISE_PHRASES_RE = re.compile(
+    r"min\s*punta|m\s+de\s+barrera|m\s+d['\u2019]altur|"
+    r"\banyos?\b|\banys\b|°[Cc]|\bgraus?\s+celsius\b",
+    re.IGNORECASE,
+)
+
+# "EN NNN": valid only if the number has ≥ 3 digits.
+_EN_MIN_DIGITS_RE = re.compile(r"^EN\s+(\d{3,})", re.IGNORECASE)
+
+# Measurement suffixes that disqualify a bare "EN NNN" match.
+_EN_MEASURE_RE = re.compile(
+    r"\d\s*(?:min\b|m2\b|m\b|anys\b|°[Cc]|lux\b|kw\b|kva\b|v\b|"
+    r"hz\b|d[Bb]\b|ppm\b|vac\b|vdc\b|kn\b|t\b|kg\b|km\b|mm\b|cm\b)",
+    re.IGNORECASE,
+)
+
+# "CTE …": real norm ref (followed by DB or alone).
+_CTE_REAL_RE = re.compile(
+    r"CTE\s*[-/]?\s*DB|CTE\s+DB|\bCTE\b\s*$",
+    re.IGNORECASE,
+)
+# "CTE …": noise (connectors / adjectives immediately after CTE).
+_CTE_NOISE_RE = re.compile(
+    r"\bCTE\s*[,;]|"
+    r"\bCTE\s+(?:a|i|el|la|les|els|de|del|des|al|als|en|per|amb|que|es|son|[eé]s|"
+    r"constructiu|estructural|normatiu|aplicable|vigent|exigit|requerit)\b",
+    re.IGNORECASE,
+)
+
 _MODEL: SentenceTransformer | None = None
 _ADIF_CATALOG:     dict = {}
 _ISO_CATALOG:      dict = {}
@@ -732,6 +768,54 @@ def check_ifi_ife_ip_references(pages: list) -> list[dict]:
     return findings
 
 
+def _is_valid_ref(ref: str, ref_type: str) -> bool:
+    """
+    Return False for false-positive matches that satisfy SEARCH_PATTERNS but
+    are not genuine normative references (measurements, generic phrases, etc.).
+    """
+    ref_s = ref.strip()
+
+    # 1. Minimum length.
+    if len(ref_s) < _MIN_REF_LEN:
+        return False
+
+    # 2. Blacklisted measurement/context phrases.
+    if _NOISE_PHRASES_RE.search(ref_s):
+        return False
+
+    # 3. Purely digit + short unit suffix with no norm keyword.
+    if re.match(r"^[\d.,/\s]+[a-zA-Z]{1,3}\s*$", ref_s):
+        return False
+
+    # 4. "EN NNN" from the "Norma UNE" pattern must have ≥ 3-digit number
+    #    and must NOT be a measurement value.
+    if ref_type == "Norma UNE" and re.match(r"^EN\s+\d", ref_s, re.IGNORECASE):
+        if not _EN_MIN_DIGITS_RE.match(ref_s):
+            return False  # e.g. "EN 89", "EN 15", "EN 50"
+        if _EN_MEASURE_RE.search(ref_s):
+            return False  # e.g. "EN 380/220V", "EN 230 Vac"
+
+    # 5. "CTE …" from the "Altres" pattern must be a genuine CTE reference:
+    #    either "CTE DB-…" / "CTE DB …" or the bare token "CTE".
+    if ref_type == "Altres" and re.match(r"^CTE\b", ref_s, re.IGNORECASE):
+        if _CTE_NOISE_RE.search(ref_s):
+            return False  # "cte, …", "cte a …", "cte i …", "cte constructiu …"
+        if not (_CTE_REAL_RE.search(ref_s) or ref_s.upper() == "CTE"):
+            return False
+
+    # 6. "Instrucció …" must contain a 4-digit year or an alphanumeric code.
+    if ref_type == "Instrucció":
+        has_year = bool(re.search(r"\b\d{4}\b", ref_s))
+        has_code = bool(re.search(
+            r"(?:IFI|IFE|ITC|TMA|FOM|DGC|IAP|EHE|PG)[/\-]",
+            ref_s, re.IGNORECASE,
+        ))
+        if not has_year and not has_code:
+            return False
+
+    return True
+
+
 def check_all_references(pages: list[dict], annex_map: dict) -> list[dict]:
     from checks.normativa_taula import (
         SEARCH_PATTERNS,
@@ -756,6 +840,8 @@ def check_all_references(pages: list[dict], annex_map: dict) -> list[dict]:
         for _ref_type, pattern in SEARCH_PATTERNS:
             for match in pattern.finditer(text):
                 ref = _clean_reference(match.group(0))
+                if not _is_valid_ref(ref, _ref_type):
+                    continue
                 key = _numeric_key(ref)
                 bucket = refs_by_key.setdefault(
                     key,

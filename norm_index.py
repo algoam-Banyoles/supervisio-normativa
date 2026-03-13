@@ -42,7 +42,7 @@ class NormIndex:
         self._index: dict[str, dict] = {}
         # loaded-entry counts per source (includes unresolvable entries)
         self._counts: dict[str, int] = {
-            "ANNEXES": 0, "DGC": 0, "ADIF": 0, "ISO": 0, "UNE": 0
+            "ANNEXES": 0, "DGC": 0, "ADIF": 0, "ISO": 0, "UNE": 0, "INDUSTRIA": 0
         }
         self._load_all()
 
@@ -296,14 +296,50 @@ class NormIndex:
         self._counts["DGC"] = count
         logger.debug("DGC: %d entries loaded", count)
 
+    def _load_industria(self) -> None:
+        path = os.path.join(
+            self._base_dir, "normativa_industria", "_catalogo", "catalogo_industria.json"
+        )
+        if not os.path.exists(path):
+            logger.warning("catalogo_industria.json not found — skipped")
+            return
+
+        with open(path, encoding="utf-8") as fh:
+            entries = json.load(fh)
+
+        _industria_vigent = {"VIGENT", "PENDENT_VERIFICAR"}
+
+        count = 0
+        for entry in entries:
+            boe_id = entry.get("boe_id", "")
+            titol  = entry.get("titol", "")
+            estat  = (entry.get("estat") or "").upper()
+
+            status = "VIGENT" if estat in _industria_vigent else "PENDENT"
+
+            catalog_entry = {
+                "status":         status,
+                "source":         "INDUSTRIA",
+                "title":          titol,
+                "raw_ref":        titol,
+                "substituted_by": None,
+                "boe_id":         boe_id,
+            }
+            self._index_entry(titol, catalog_entry)
+            count += 1
+
+        self._counts["INDUSTRIA"] = count
+        logger.debug("INDUSTRIA: %d entries loaded", count)
+
     def _load_all(self) -> None:
         self._index = {}
-        self._counts = {"ANNEXES": 0, "DGC": 0, "ADIF": 0, "ISO": 0, "UNE": 0}
+        self._counts = {"ANNEXES": 0, "DGC": 0, "ADIF": 0, "ISO": 0, "UNE": 0, "INDUSTRIA": 0}
         self._load_annexes()
         self._load_adif()
         self._load_iso()
         self._load_une()
         self._load_dgc()
+        self._load_industria()
 
     # ─── Public API ───────────────────────────────────────────────────────────
 
@@ -393,6 +429,7 @@ if __name__ == "__main__":
     print(
         f"Index carregat: {s['total_indexed']} normes indexades  "
         f"(DGC: {src['DGC']}, ADIF: {src['ADIF']}, "
-        f"ISO: {src['ISO']}, UNE: {src['UNE']}, ANNEXES: {src['ANNEXES']})"
+        f"ISO: {src['ISO']}, UNE: {src['UNE']}, "
+        f"ANNEXES: {src['ANNEXES']}, INDUSTRIA: {src.get('INDUSTRIA', 0)})"
     )
     print(f"Estat:  {s['per_status']}")

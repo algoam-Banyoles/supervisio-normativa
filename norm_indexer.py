@@ -16,6 +16,12 @@ from sentence_transformers import SentenceTransformer
 
 
 NORMATIVA_FOLDER = "normativa"
+NORMATIVA_FOLDERS = [
+    "normativa_adif",
+    "normativa_dgc",
+    "normativa_industria",
+    "normativa_territori",
+]
 DB_PATH = "normativa.db"
 CHROMA_PATH = "chroma_db"
 CHUNK_SIZE = 800
@@ -507,5 +513,23 @@ def _norm(text: str) -> str:
 if __name__ == "__main__":
     import sys
 
-    folder = sys.argv[1] if len(sys.argv) > 1 else NORMATIVA_FOLDER
-    index_folder(folder)
+    # If a folder argument is given, index only that folder.
+    # Otherwise, index all folders listed in NORMATIVA_FOLDERS.
+    if len(sys.argv) > 1:
+        index_folder(sys.argv[1])
+    else:
+        totals: dict[str, int] = {"indexed": 0, "skipped": 0, "errors": 0, "chunks": 0, "articles": 0}
+        for folder in NORMATIVA_FOLDERS:
+            if not os.path.isdir(folder):
+                print(f"[SKIP] {folder} (no existeix)")
+                continue
+            print(f"\n--- Indexant {folder} ---")
+            result = index_folder(folder)
+            for k in totals:
+                totals[k] += result.get(k, 0)
+        print(
+            f"\nTotal: {totals['indexed']} indexats, "
+            f"{totals['skipped']} sense canvis, "
+            f"{totals['errors']} errors, "
+            f"{totals['chunks']:,} chunks"
+        )
