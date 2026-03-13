@@ -1,0 +1,4 @@
+Total documents: 145
+Per tipus: altre=98, criteri=5, guia=3, instruccio=2, pla=37
+Per tema: abastament=2, dma=1, dph=4, drenatge=6, hidrologia=14, preses=6, qualitat-aigues=17, sanejament=8, sequera=11
+PDFs directes trobats: 55

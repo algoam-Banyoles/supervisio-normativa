@@ -56,7 +56,7 @@ Supervisio/
 ├── norm_checker.py      # Validació normativa via RAG — WIP
 │
 └── normativa_*/         # Catàlegs descarregats pels scrapers
-    ├── normativa_annexes.json        # v1.3, 132 normes generals
+    ├── normativa_annexes.json        # v1.5, normes generals (CTE, ferroviari, edificació)
     ├── normativa_adif/_catalogo/     # 1496 NTEs ADIF
     ├── normativa_iso/_catalogo/      # ~25k normes ISO
     ├── normativa_une/_catalogo/      # parcial UNE (fix pendent)
@@ -70,7 +70,7 @@ Supervisio/
 | Scraper | Estat | Notes |
 |---------|-------|-------|
 | `norm_scraper.py` | ✅ Funciona | DGC Ministeri Transport, CDN obert |
-| `adif_scraper.py` | ⚠️ Fix pendent | 1496 docs OK, **tots surten "sense annexos"**. Cal cridar `loadDocumentosAnexos(object_id)` i després `descargarDocumentoAnexo(annex_id)` per cada fitxer |
+| `adif_scraper.py` | ✅ Funciona | 1496 NTEs OK. API: `getDocumentosAnexos?idDocPadre=` + `descargarDocumento?identificador=` |
 | `iso_catalog.py` | ✅ Funciona | ISO open data CSV |
 | `une_catalog.py` | ⚠️ Fix pendent | ASP.NET via curl_cffi. Problemes: `drpEstado` són checkboxes no select; botó Submit té `id="idButton"` no text "Aplicar"; sempre retorna 32 resultats (filtre ICS no s'aplica) |
 
@@ -181,7 +181,6 @@ sentence-transformers  # embeddings (fase futura)
 
 ## Pendents actius
 
-- [ ] Fix `adif_scraper.py`: implementar `loadDocumentosAnexos` + `descargarDocumentoAnexo`
 - [ ] Fix `une_catalog.py`: checkboxes Vigentes/Anuladas, botó `id=idButton`, filtre ICS
 - [ ] Integrar `norm_checker.py` al checker principal
 - [ ] Sincronització incremental (upsert) als scrapers

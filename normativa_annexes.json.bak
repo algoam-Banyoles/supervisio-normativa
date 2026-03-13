@@ -1,9 +1,9 @@
 {
   "metadades": {
-    "versio": "1.3",
+    "versio": "1.7",
     "data_actualitzacio": "2026-03",
     "ambit": "Projectes constructius d'obra civil — Generalitat de Catalunya",
-    "notes": "Normativa verificada a marc 2026. v1.2: +49 entrades noves detectades al projecte FGC Igualada (normes estructurals, ambiental, ferroviaries, seguretat laboral, ascensors, soroll, paisatge). +1 bloc UNE EPIs ESS. Total: 158 normes UNE EPIs agrupades a A18."
+    "notes": "Normativa verificada a marc 2026. v1.2: +49 entrades noves detectades al projecte FGC Igualada (normes estructurals, ambiental, ferroviaries, seguretat laboral, ascensors, soroll, paisatge). +1 bloc UNE EPIs ESS. Total: 158 normes UNE EPIs agrupades a A18. v1.4: +CTE (Codi Tecnic de lEdificacio) — 7 documents basics + marc normatiu RD 314/2006. +NBE a normativa_derogada."
   },
   "normativa_derogada": [
     {
@@ -53,6 +53,101 @@
       "text": "Real Decreto Legislativo 3/2011, de 14 de noviembre, por el que se aprueba el texto refundido de la Ley de Contratos del Sector Público.",
       "derogada_per": "",
       "observacions": "Font: BOE OpenData API."
+    },
+    {
+      "codi": "L-7/1993",
+      "text": "Llei 7/1993, de 30 de setembre, de carreteres",
+      "derogada_per": "DL-2/2009",
+      "observacions": "Font: PJCAT. Derogada pel Decret Legislatiu 2/2009"
+    },
+    {
+      "codi": "D-190/2016",
+      "text": "Decret 190/2016, de 16 de febrer, de gestio de la seguretat viaria en les infraestructures viaries de la Generalitat de Catalunya",
+      "derogada_per": "D-168/2025",
+      "observacions": "Font: PJCAT. Derogat pel Decret 168/2025 des del 31.07.2025"
+    },
+    {
+      "codi": "D-135/1995",
+      "text": "Decret 135/1995, de 24 de marc, de desplegament de la Llei 20/1991, de promocio de l'accessibilitat i de supressio de barreres arquitectoniques",
+      "derogada_per": "D-209/2023",
+      "observacions": "Font: PJCAT. Derogat per D-209/2023 des de l'01.03.2024"
+    },
+    {
+      "codi": "NBE-DEROGADA",
+      "text": "Normas Basicas de la Edificacion (NBE)",
+      "estat": "DEROGADA",
+      "derogada_per": "RD 314/2006 (CTE)",
+      "observacions": "Totes les NBE queden derogades amb l'entrada en vigor del CTE. Si el projecte cita NBE-CT-79, NBE-CPI-96, etc. -> NO OK"
+    },
+    {
+      "codi": "RD-474/1988",
+      "text": "Real Decreto 474/1988 aparatos a presion (i tota la familia del Reglament d'Aparells a Pressio RD 1244/1979)",
+      "estat": "DEROGADA",
+      "derogada_per": "RD 809/2021, de 21 de setembre (Reglament d'equips a pressio i ITC)",
+      "observacions": "Cadena de derogacions: RD 474/1988 derogat per RD 222/2001 -> RD 2060/2008 -> derogat per RD 809/2021 (vigor 02/01/2022). Normativa vigent actual: RD 809/2021. Si el projecte cita RD 474/1988, RD 1244/1979 o RD 2060/2008 -> NO OK."
+    },
+    {
+      "codi": "RD-57/2005",
+      "text": "Real Decreto 57/2005, de 21 de enero, prescripciones para el incremento de la seguridad del parque de ascensores existente",
+      "estat": "DEROGADA",
+      "derogada_per": "RD 355/2024, de 2 d'abril (efectes 01/07/2024)",
+      "observacions": "Derogat amb efectes d'1 de juliol de 2024. Si el projecte cita el RD 57/2005 -> NO OK. Normativa vigent d'ascensors: RD 355/2024 i RD 88/2013 (Reglament d'aparells d'elevacio i manutenccio ITC-AEM1)."
+    },
+    {
+      "codi": "UNE-EN-81-1",
+      "text": "UNE-EN 81-1:2001 Reglas de seguridad para la construccion e instalacion de ascensores. Parte 1: Ascensores electricos",
+      "estat": "DEROGADA",
+      "derogada_per": "UNE-EN 81-20:2015 (des 01/09/2017)",
+      "observacions": "Derogada des de l'1 de setembre de 2017. Norma vigent: UNE-EN 81-20:2020 i UNE-EN 81-50:2020. Si el projecte cita UNE-EN 81-1 sense +A3:2010 -> NO OK."
+    },
+    {
+      "codi": "UNE-EN-779-2003",
+      "text": "UNE-EN 779:2003 Filtros de aire de ventilacion general para particulas",
+      "estat": "DEROGADA",
+      "derogada_per": "UNE-EN ISO 16890:2017",
+      "observacions": "Derogada. La nova norma UNE-EN ISO 16890 classifica filtres per fraccions PM1, PM2.5 i PM10 en lloc de les classes G/M/F anteriors."
+    },
+    {
+      "codi": "UNE-20460",
+      "text": "UNE 20460 Instalaciones electricas en edificios (serie completa: UNE 20460-3, 20460-5-523, 20460-5-54)",
+      "estat": "DEROGADA",
+      "derogada_per": "UNE HD 60364 (serie IEC 60364)",
+      "observacions": "Tota la serie UNE 20460 ha estat substituida per la serie UNE HD 60364. Si el projecte cita UNE 20460 sense especificar UNE HD 60364 -> NO OK."
+    },
+    {
+      "codi": "UNE-72550",
+      "text": "UNE 72550:1985 / UNE 72551:1985 / UNE 72552:1985 / UNE 72553:1985 Alumbrado de emergencia",
+      "estat": "DEROGADA",
+      "derogada_per": "UNE-EN 1838:2000 + UNE-EN 60598-2-22",
+      "observacions": "Series d'alumbrat d'emergencia de 1985 derogades. Normes vigents: UNE-EN 1838 (requisits) i UNE-EN 60598-2-22 (lluminaries). CTE DB-SUA ja referencia les normes vigents."
+    },
+    {
+      "codi": "UNE-EN-60335-1-2002",
+      "text": "UNE-EN 60335-1:2002 Aparatos electrodomesticos y analogos. Seguridad. Parte 1: Requisitos generales",
+      "estat": "DEROGADA",
+      "derogada_per": "UNE-EN 60335-1:2012+A11:2014 (i versions posteriors)",
+      "observacions": "La versio 2002 esta derogada. Verificar versio citada al projecte."
+    },
+    {
+      "codi": "UNE-EN-60335-2-21-1995",
+      "text": "UNE-EN 60335-2-21:1995 Seguridad de los aparatos electrodomesticos. Calentadores de agua de almacenamiento",
+      "estat": "DEROGADA",
+      "derogada_per": "UNE-EN 60335-2-21:2004 i versions posteriors",
+      "observacions": "La versio 1995 esta derogada."
+    },
+    {
+      "codi": "UNE-85222-1985",
+      "text": "UNE 85222:1985 Ventanas",
+      "estat": "DEROGADA",
+      "derogada_per": "UNE-EN 14351-1 (fusteria exterior)",
+      "observacions": "Norma nacional antiga derogada. Norma vigent: UNE-EN 14351-1:2006+A2:2016."
+    },
+    {
+      "codi": "UNE-80303-2-2001",
+      "text": "UNE 80303-2:2001 Cementos con caracteristicas adicionales. Cementos resistentes a los sulfatos",
+      "estat": "DEROGADA",
+      "derogada_per": "UNE-EN 197-1 i UNE-EN 197-5 (serie ciments)",
+      "observacions": "Les normes nacionals UNE 803xx de ciments han estat majoritariament substituides per la serie harmonitzada UNE-EN 197. Verificar si hi ha versio posterior vigent."
     }
   ],
   "annexes": [
@@ -310,6 +405,12 @@
           "text": "Reial Decret 1544/2007, de 23 de novembre, condicions basiques d'accessibilitat i no discriminacio per a l'acces i la utilitzacio dels mitjans de transport",
           "articles": [],
           "observacions": "Accessibilitat en transport public. Aplicable a A07, A09, A11"
+        },
+        {
+          "codi": "OrdTMA-135/2023",
+          "text": "Ordre TMA/135/2023, de 15 de febrer, instruccions ferroviaries IFI i IFE per al projecte i construccio del subsistema d'infraestructura i del subsistema d'energia",
+          "articles": [],
+          "observacions": "En vigor des 01/07/2023. Modificada per OrdTMA/698/2023 (disposicio transitoria). Corregida per OrdTRM/608/2024. Desenvolupa RD 929/2020. Aplicable a RFIG: ample iberic, europeu i metric. Exclou vies de terminals de mercaderies."
         }
       ]
     },
@@ -382,6 +483,18 @@
           "text": "Reial Decret 337/2014, instal.lacions electricitat AT",
           "articles": [],
           "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-60529",
+          "text": "UNE-EN 60529 / IEC 60529 Graus de proteccio proporcionats pels envolupants (codi IP). Degrees of protection provided by enclosures (IP Code)",
+          "articles": [],
+          "observacions": "Versio consolidada vigent: IEC 60529:1989+A1:1999+A2:2013. Aplicable a equips electrics fins a 72,5 kV. S'usa per especificar grau IP d'armaris, caixetes i equips en installacions ferrviaries i d'edificacio."
+        },
+        {
+          "codi": "UNE-EN-ISO-16890",
+          "text": "UNE-EN ISO 16890 Filtres d'aire per a ventilacio general",
+          "articles": [],
+          "observacions": "Vigent des 2017. Substitueix UNE-EN 779:2003. Classifica filtres per PM1, PM2.5, PM10."
         }
       ]
     },
@@ -478,6 +591,30 @@
           "text": "Reial Decret 1544/2007, de 23 de novembre, condicions basiques d'accessibilitat i no discriminacio per a l'acces i la utilitzacio dels mitjans de transport",
           "articles": [],
           "observacions": "Accessibilitat en transport public. Aplicable a A07, A09, A11"
+        },
+        {
+          "codi": "UNE-EN-81-20",
+          "text": "UNE-EN 81-20:2020 Regles de seguretat per a la construccio i installacio d'ascensors. Ascensors per al transport de persones i carregues",
+          "articles": [],
+          "observacions": "Norma vigent des 01/09/2017. Substitueix UNE-EN 81-1:2001. Aplicable a ascensors nous."
+        },
+        {
+          "codi": "UNE-EN-81-28",
+          "text": "UNE-EN 81-28 Alarma a distancia en ascensors i muntacargues per a persones i persones i carregues",
+          "articles": [],
+          "observacions": "Vigent. Exigida pel CTE DB-SUA i per la normativa d'accessibilitat."
+        },
+        {
+          "codi": "UNE-EN-81-70",
+          "text": "UNE-EN 81-70 Accessibilitat als ascensors de persones, incloent persones amb discapacitat",
+          "articles": [],
+          "observacions": "Vigent. Referenciada pel CTE DB-SUA i pel Decret 209/2023 d'accessibilitat de Catalunya."
+        },
+        {
+          "codi": "UNE-EN-115-1",
+          "text": "UNE-EN 115-1 Seguretat d'escales mecaniques i andanes mobils. Part 1: Construccio i installacio",
+          "articles": [],
+          "observacions": "Vigent. Aplicable a escales mecaniques i tapissos rodants en estacions i edificis publics."
         }
       ]
     },
@@ -648,6 +785,12 @@
           "text": "UNE-EN 933 assaigs caracteristiques geometriques arids",
           "articles": [],
           "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "UNE-EN-197-1",
+          "text": "UNE-EN 197-1 Ciment. Composicio, especificacions i criteris de conformitat dels ciments comuns",
+          "articles": [],
+          "observacions": "Vigent. Norma harmonitzada europea de ciments. Referenciada per EHE-08 i CE (RD 470/2021)."
         }
       ]
     },
@@ -762,6 +905,18 @@
           "text": "Llei 16/2017, del canvi climatic",
           "articles": [],
           "observacions": "Detectat al projecte. Verificar versio vigent."
+        },
+        {
+          "codi": "D-245/2005",
+          "text": "Decret 245/2005, de 8 de novembre, pel qual es fixen els criteris per a l'elaboracio dels mapes de capacitat acustica",
+          "articles": [],
+          "observacions": "Vigent. Modificat parcialment pel Decret 176/2009 (derogats art. 6.4 i 7.3; modificat annex 1). Desplega la Llei 16/2002 de proteccio contra la contaminacio acustica. Aplicable a projectes amb afectacio acustica."
+        },
+        {
+          "codi": "D-328/1988",
+          "text": "Decret 328/1988, d'11 d'octubre, pel qual s'estableixen normes de proteccio i addicionals en materia de procediment en relacio amb diversos aquifers de Catalunya",
+          "articles": [],
+          "observacions": "Vigent. Aplicable a projectes que afecten aquifers protegits a Catalunya (Llobregat, Ter, Besos, Baix Francolí, etc.). Gestio a carrec de l'Agencia Catalana de l'Aigua (ACA). Verificar si l'aquifer afectat esta inclus en l'ambit del Decret."
         }
       ]
     },
@@ -1055,6 +1210,63 @@
           "text": "Reial Decret 1359/2011, revisio de preus contractes",
           "articles": [],
           "observacions": "Detectat al projecte. Verificar versio vigent."
+        }
+      ]
+    },
+    {
+      "id": "A25",
+      "titol": "Codi Tecnic de lEdificacio (CTE)",
+      "normativa": [
+        {
+          "codi": "RD-314/2006",
+          "text": "Reial Decret 314/2006, de 17 de marc, pel qual s'aprova el Codi Tecnic de l'Edificacio",
+          "articles": [],
+          "observacions": "Modificat per RD 732/2019. Marc normatiu del CTE."
+        },
+        {
+          "codi": "CTE-DB-SE",
+          "text": "CTE Document Basic SE — Seguretat Estructural",
+          "articles": [
+            "Art. 3",
+            "Art. 4"
+          ],
+          "observacions": "Inclou DB-SE-AE, DB-SE-C, DB-SE-A, DB-SE-F, DB-SE-M"
+        },
+        {
+          "codi": "CTE-DB-SI",
+          "text": "CTE Document Basic SI — Seguretat en cas d'Incendi",
+          "articles": [],
+          "observacions": "Aplicable a edificis. Complementat per RIPCI (RD 513/2017) per installacions."
+        },
+        {
+          "codi": "CTE-DB-SUA",
+          "text": "CTE Document Basic SUA — Seguretat d'Utilitzacio i Accessibilitat",
+          "articles": [],
+          "observacions": "Substitueix el DB-SU i DB-SUA anteriors. Versio 2019."
+        },
+        {
+          "codi": "CTE-DB-HE",
+          "text": "CTE Document Basic HE — Estalvi d'Energia",
+          "articles": [],
+          "observacions": "Versio actualitzada 2022 (Ordre TED/285/2022)."
+        },
+        {
+          "codi": "CTE-DB-HS",
+          "text": "CTE Document Basic HS — Salubritat",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "CTE-DB-HR",
+          "text": "CTE Document Basic HR — Proteccio davant el Soroll",
+          "articles": [],
+          "observacions": ""
+        },
+        {
+          "codi": "D-173/2010",
+          "text": "Decreto 173/2010, de 19 de febrero, por el que se modifica el Codigo Tecnico de la Edificacion",
+          "articles": [],
+          "observacions": "Vigent com a modificacio integrada al text consolidat del CTE. La referencia aillada al D-173/2010 en un projecte es informativa — el contingut esta incorporat al CTE vigent (RD 314/2006 mod. RD 732/2019). No s'ha de marcar com a derogat."
         }
       ]
     }
