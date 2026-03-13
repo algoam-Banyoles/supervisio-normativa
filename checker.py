@@ -413,7 +413,7 @@ class ProjectChecker:
         checks = [
             ("📄 Documents obligatoris",  lambda: check_documents_obligatoris(self.pages, self.doc)),
             ("🔖 Marcadors (bookmarks)",  lambda: check_bookmarks(self.pages, self.doc, self.structure)),
-            ("⬜ Pàgines en blanc",       lambda: check_blank_pages(self.pages, self.doc)),
+            ("⬜ Pàgines en blanc",       lambda: check_blank_pages(self.pages, self.doc, annex_map)),
             ("🔢 Paginació (peus pàg.)",  lambda p, d: check_pagination(p, d, annex_map=annex_map)),
             ("✍  Signatures",             lambda: check_signatures(self.pages, self.doc, self.structure)),
             ("🗣 Castellanismes",          self._run_castellanismes_hybrid),

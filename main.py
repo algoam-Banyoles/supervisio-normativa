@@ -13,6 +13,10 @@ from pathlib import Path
 # Assegura que el directori del script es al path (necessari a Windows)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+# Força UTF-8 a la sortida estàndard (Windows usa cp1252 per defecte)
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 from checker import ProjectChecker
 from env_utils import load_local_env
 from report  import ReportGenerator

@@ -24,6 +24,7 @@ NORMATIVA_FOLDERS = [
     "normativa_boe",
     "normativa_cte",
     "normativa_era",
+    "normativa_mitma_ferroviari",
     "normativa_pjcat",
     "normativa_une",
 ]

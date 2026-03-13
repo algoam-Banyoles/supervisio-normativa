@@ -537,6 +537,8 @@ def scrape_all(output_dir: str) -> None:
 
 # ─── Entry point ──────────────────────────────────────────────────────────────
 if __name__ == "__main__":
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     out = sys.argv[1] if len(sys.argv) > 1 else OUTPUT_DIR
     print("=" * 55)
     print(" Scraper Normativa Tecnica ADIF (sincronitzacio incremental)")

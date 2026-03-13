@@ -44,7 +44,7 @@ class NormIndex:
         self._counts: dict[str, int] = {
             "ANNEXES": 0, "DGC": 0, "ADIF": 0, "ISO": 0, "UNE": 0,
             "BOE": 0, "INDUSTRIA": 0, "PJCAT": 0, "TERRITORI": 0,
-            "ACA": 0, "CTE": 0, "ERA": 0,
+            "ACA": 0, "CTE": 0, "ERA": 0, "MITMA_F": 0,
         }
         self._load_all()
 
@@ -96,8 +96,14 @@ class NormIndex:
                 text = norm.get("text", "")
                 obs  = norm.get("observacions", "") or ""
 
+                # Detect PASSIVE derogation: "derogat per X", "substituïda per X".
+                # Must NOT match ACTIVE form "Deroga X" (this norm derogates others).
                 is_derogada = bool(re.search(
-                    r"derog|substitu[ïi]da|anulad|anul[·l]",
+                    r"DEROGAD[AO]\s+per\b|[Dd]erogat\s+per\b"
+                    r"|substitu[ïi]da\s+per\b|[Ss]ubstituir\s+per\b"
+                    r"|ha\s+estat\s+derogad|ha\s+sido\s+derogad"
+                    r"|anulad[ao]\s+per\b|anulado\s+por\b"
+                    r"|[Nn]o\s+(?:vigent|vigente)",
                     obs, re.IGNORECASE
                 ))
                 status = "DEROGADA" if is_derogada else "VIGENT"
@@ -105,7 +111,7 @@ class NormIndex:
                 sub = None
                 if is_derogada:
                     m = re.search(
-                        r"(?:substitu[ïi]da|reemplazada)\s+per\s+(.+?)(?:\.|$)",
+                        r"(?:substitu[ïi]da|reemplazada|substituir)\s+per\s+(.+?)(?:\.|$)",
                         obs, re.IGNORECASE
                     )
                     if m:
@@ -560,12 +566,15 @@ class NormIndex:
     def _load_era(self) -> None:
         self._load_wrapped("ERA", "normativa_era", "catalogo_era.json")
 
+    def _load_mitma_ferroviari(self) -> None:
+        self._load_wrapped("MITMA_F", "normativa_mitma_ferroviari", "catalogo_mitma_ferroviari.json")
+
     def _load_all(self) -> None:
         self._index = {}
         self._counts = {
             "ANNEXES": 0, "DGC": 0, "ADIF": 0, "ISO": 0, "UNE": 0,
             "BOE": 0, "INDUSTRIA": 0, "PJCAT": 0, "TERRITORI": 0,
-            "ACA": 0, "CTE": 0, "ERA": 0,
+            "ACA": 0, "CTE": 0, "ERA": 0, "MITMA_F": 0,
         }
         self._load_annexes()
         self._load_adif()
@@ -579,6 +588,7 @@ class NormIndex:
         self._load_aca()
         self._load_cte()
         self._load_era()
+        self._load_mitma_ferroviari()
 
     # ─── Public API ───────────────────────────────────────────────────────────
 
