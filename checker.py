@@ -45,6 +45,54 @@ def _run_norm_db_check(pages: list[dict], annex_map: dict) -> list[dict]:
     return check_all_references(pages, annex_map)
 
 
+def _dedup_derogated_findings(results: list[dict]) -> list[dict]:
+    """
+    Remove NT-xx DEROGADA findings from normativa_taula that duplicate an
+    existing AG-13 finding from normativa.  Comparison is by normalised
+    number/year token (e.g. '304/2002') extracted from the «…» quote in
+    the descrip field.
+    """
+    _QUOTE_RE = re.compile(r"«(.+?)»")
+    _NUM_YEAR_RE = re.compile(r"\d{1,4}/\d{4}")
+
+    def _tokens(text: str) -> set[str]:
+        """Return all N/YYYY tokens found in text (lowercased)."""
+        return {m.lower() for m in _NUM_YEAR_RE.findall(text)}
+
+    # Collect all numeric tokens referenced by AG-13 findings
+    ag13_tokens: set[str] = set()
+    for row in results:
+        for f in row.get("findings", []):
+            if f.get("item", "").startswith("AG-13") and f.get("status") == "NO OK":
+                m = _QUOTE_RE.search(f.get("descrip", ""))
+                if m:
+                    ag13_tokens |= _tokens(m.group(1))
+
+    if not ag13_tokens:
+        return results   # nothing to dedup
+
+    # Filter NT-xx DEROGADA findings whose reference overlaps with AG-13 tokens
+    _NT_TITLE = "📋 Taula de normativa"
+    for row in results:
+        if row.get("title") != _NT_TITLE:
+            continue
+        filtered = []
+        for f in row["findings"]:
+            if (
+                f.get("item", "").startswith("NT-")
+                and f.get("status") == "NO OK"
+                and "derogad" in f.get("descrip", "").lower()
+            ):
+                m = _QUOTE_RE.search(f.get("descrip", ""))
+                ref_tokens = _tokens(m.group(1)) if m else set()
+                if ref_tokens & ag13_tokens:
+                    continue   # duplicate — skip
+            filtered.append(f)
+        row["findings"] = filtered
+
+    return results
+
+
 class ProjectChecker:
     def __init__(
         self,
@@ -425,6 +473,8 @@ class ProjectChecker:
             seen_titles.add(title)
             unique_results.append(row)
         results = unique_results
+
+        results = _dedup_derogated_findings(results)
 
         print(f"  DEBUG len(results): {len(results)}")
         for r in results:

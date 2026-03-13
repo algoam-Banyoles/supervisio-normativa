@@ -61,7 +61,8 @@ ABREVIATURES = [
 ]
 
 # ---------------------------------------------------------------------------
-# NORMATIVA DEROGADA — textos normatius que ja no estan vigents
+# NORMATIVA DEROGADA: deprecated — now managed via normativa_annexes.json
+# Kept for reference only. Do not add new entries here.
 # ---------------------------------------------------------------------------
 NORMATIVA_DEROGADA = [
     {
