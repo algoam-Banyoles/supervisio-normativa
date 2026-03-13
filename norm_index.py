@@ -58,6 +58,12 @@ class NormIndex:
         elif _PRIORITY.get(entry["status"], 0) > _PRIORITY.get(existing["status"], 0):
             self._index[key] = entry
 
+    def _store_direct(self, key: str, entry: dict) -> None:
+        """Store entry under a raw key (bypasses norm_resolver).
+        Lower priority: only stores if key not already present."""
+        if key and key not in self._index:
+            self._index[key] = entry
+
     def _index_entry(self, ref_text: str, entry: dict) -> bool:
         """Resolve *ref_text*, store *entry* if resolvable; return True on hit."""
         resolved = resolve(ref_text)
@@ -298,6 +304,52 @@ class NormIndex:
         self._counts["DGC"] = count
         logger.debug("DGC: %d entries loaded", count)
 
+    def _load_boe(self) -> None:
+        path = os.path.join(
+            self._base_dir, "normativa_boe", "_catalogo", "catalogo_boe.json"
+        )
+        if not os.path.exists(path):
+            logger.warning("catalogo_boe.json not found — skipped")
+            return
+        with open(path, encoding="utf-8") as fh:
+            entries = json.load(fh)
+        if not isinstance(entries, list):
+            logger.warning("catalogo_boe.json format unexpected — skipped")
+            return
+        count = 0
+        for entry in entries:
+            codi      = (entry.get("codi") or entry.get("id") or "").strip()
+            titol     = (entry.get("text") or "").strip()
+            estat_raw = (entry.get("estat") or "vigent").lower()
+            if "derog" in estat_raw or "anulad" in estat_raw or "historic" in estat_raw:
+                status = "DEROGADA"
+            else:
+                status = "VIGENT"
+            ref_text = titol or codi
+            if not ref_text:
+                continue
+            catalog_entry = {
+                "status": status, "source": "BOE", "title": titol,
+                "raw_ref": ref_text, "substituted_by": None, "codi": codi,
+            }
+            before = len(self._index)
+            self._index_entry(ref_text, catalog_entry)
+            if codi and codi != ref_text:
+                self._index_entry(codi, catalog_entry)
+            # direct keys: normalised codi + title
+            if codi:
+                codi_norm = " ".join(codi.upper().split())
+                self._store_direct(codi_norm, catalog_entry)
+                codi_alt = re.sub(r"[-/]", " ", codi_norm).strip()
+                if codi_alt != codi_norm:
+                    self._store_direct(codi_alt, catalog_entry)
+            if titol and len(titol) >= 10:
+                self._store_direct(titol[:120].upper(), catalog_entry)
+            if len(self._index) > before:
+                count += 1
+        self._counts["BOE"] = count
+        logger.debug("BOE: %d entries loaded", count)
+
     def _load_industria(self) -> None:
         path = os.path.join(
             self._base_dir, "normativa_industria", "_catalogo", "catalogo_industria.json"
@@ -305,43 +357,228 @@ class NormIndex:
         if not os.path.exists(path):
             logger.warning("catalogo_industria.json not found — skipped")
             return
-
         with open(path, encoding="utf-8") as fh:
             entries = json.load(fh)
-
-        _industria_vigent = {"VIGENT", "PENDENT_VERIFICAR"}
-
+        if not isinstance(entries, list):
+            logger.warning("catalogo_industria.json format unexpected — skipped")
+            return
         count = 0
         for entry in entries:
-            boe_id = entry.get("boe_id", "")
-            titol  = entry.get("titol", "")
-            estat  = (entry.get("estat") or "").upper()
-
-            status = "VIGENT" if estat in _industria_vigent else "PENDENT"
-
+            boe_id    = (entry.get("boe_id") or "").strip()
+            titol     = (entry.get("titol") or "").strip()
+            estat_raw = (entry.get("estat") or "vigent").lower()
+            if "derog" in estat_raw or "anulad" in estat_raw:
+                status = "DEROGADA"
+            else:
+                status = "VIGENT"
+            ref_text = titol or boe_id
+            if not ref_text:
+                continue
             catalog_entry = {
-                "status":         status,
-                "source":         "INDUSTRIA",
-                "title":          titol,
-                "raw_ref":        titol,
-                "substituted_by": None,
-                "boe_id":         boe_id,
+                "status": status, "source": "INDUSTRIA", "title": titol,
+                "raw_ref": ref_text, "substituted_by": None, "codi": boe_id,
             }
-            self._index_entry(titol, catalog_entry)
-            count += 1
-
+            before = len(self._index)
+            self._index_entry(ref_text, catalog_entry)
+            if boe_id and boe_id != ref_text:
+                self._index_entry(boe_id, catalog_entry)
+            if boe_id:
+                codi_norm = " ".join(boe_id.upper().split())
+                self._store_direct(codi_norm, catalog_entry)
+                codi_alt = re.sub(r"[-/]", " ", codi_norm).strip()
+                if codi_alt != codi_norm:
+                    self._store_direct(codi_alt, catalog_entry)
+            if titol and len(titol) >= 10:
+                self._store_direct(titol[:120].upper(), catalog_entry)
+            if len(self._index) > before:
+                count += 1
         self._counts["INDUSTRIA"] = count
         logger.debug("INDUSTRIA: %d entries loaded", count)
 
+    def _load_pjcat(self) -> None:
+        path = os.path.join(
+            self._base_dir, "normativa_pjcat", "_catalogo", "catalogo_pjcat.json"
+        )
+        if not os.path.exists(path):
+            logger.warning("catalogo_pjcat.json not found — skipped")
+            return
+        with open(path, encoding="utf-8") as fh:
+            entries = json.load(fh)
+        if not isinstance(entries, list):
+            logger.warning("catalogo_pjcat.json format unexpected — skipped")
+            return
+        count = 0
+        for entry in entries:
+            codi         = (entry.get("codi") or entry.get("id") or "").strip()
+            titol        = (entry.get("text") or "").strip()
+            derogada_per = (entry.get("derogada_per") or "").strip()
+            estat_raw    = (entry.get("estat") or "vigent").lower()
+            if "derog" in estat_raw or "anulad" in estat_raw or derogada_per:
+                status = "DEROGADA"
+            else:
+                status = "VIGENT"
+            ref_text = titol or codi
+            if not ref_text:
+                continue
+            catalog_entry = {
+                "status": status, "source": "PJCAT", "title": titol,
+                "raw_ref": ref_text, "substituted_by": derogada_per or None, "codi": codi,
+            }
+            before = len(self._index)
+            self._index_entry(ref_text, catalog_entry)
+            if codi and codi != ref_text:
+                self._index_entry(codi, catalog_entry)
+            if codi:
+                codi_norm = " ".join(codi.upper().split())
+                self._store_direct(codi_norm, catalog_entry)
+                codi_alt = re.sub(r"[-/]", " ", codi_norm).strip()
+                if codi_alt != codi_norm:
+                    self._store_direct(codi_alt, catalog_entry)
+            if titol and len(titol) >= 10:
+                self._store_direct(titol[:120].upper(), catalog_entry)
+            if len(self._index) > before:
+                count += 1
+        self._counts["PJCAT"] = count
+        logger.debug("PJCAT: %d entries loaded", count)
+
+    def _load_territori(self) -> None:
+        path = os.path.join(
+            self._base_dir, "normativa_territori", "_catalogo", "catalogo_territori.json"
+        )
+        if not os.path.exists(path):
+            logger.warning("catalogo_territori.json not found — skipped")
+            return
+        with open(path, encoding="utf-8") as fh:
+            entries = json.load(fh)
+        if not isinstance(entries, list):
+            logger.warning("catalogo_territori.json format unexpected — skipped")
+            return
+        count = 0
+        for entry in entries:
+            codi      = (entry.get("codi") or entry.get("id") or "").strip()
+            titol     = (entry.get("text") or "").strip()
+            deroga    = (entry.get("deroga") or "").strip()
+            estat_raw = (entry.get("estat") or "vigent").lower()
+            if "derog" in estat_raw or "anulad" in estat_raw:
+                status = "DEROGADA"
+            else:
+                status = "VIGENT"
+            ref_text = titol or codi
+            if not ref_text:
+                continue
+            catalog_entry = {
+                "status": status, "source": "TERRITORI", "title": titol,
+                "raw_ref": ref_text, "substituted_by": deroga or None, "codi": codi,
+            }
+            before = len(self._index)
+            self._index_entry(ref_text, catalog_entry)
+            if codi and codi != ref_text:
+                self._index_entry(codi, catalog_entry)
+            if codi:
+                codi_norm = " ".join(codi.upper().split())
+                self._store_direct(codi_norm, catalog_entry)
+                codi_alt = re.sub(r"[-/]", " ", codi_norm).strip()
+                if codi_alt != codi_norm:
+                    self._store_direct(codi_alt, catalog_entry)
+            if titol and len(titol) >= 10:
+                self._store_direct(titol[:120].upper(), catalog_entry)
+            if len(self._index) > before:
+                count += 1
+        self._counts["TERRITORI"] = count
+        logger.debug("TERRITORI: %d entries loaded", count)
+
+    def _load_wrapped(self, source: str, folder: str, filename: str) -> None:
+        """Load a catalog whose JSON is a metadata-wrapped dict with a 'documents' list."""
+        path = os.path.join(self._base_dir, folder, "_catalogo", filename)
+        if not os.path.exists(path):
+            logger.warning("%s not found — skipped", filename)
+            self._counts[source] = 0
+            return
+        with open(path, encoding="utf-8") as fh:
+            data = json.load(fh)
+        # Resolve document list from wrapper dict or bare list
+        entries = None
+        if isinstance(data, list):
+            entries = data
+        elif isinstance(data, dict):
+            for key in ("documents", "normes", "items", "resultats", "legislacio", "llista", "data"):
+                if key in data and isinstance(data[key], list):
+                    entries = data[key]
+                    break
+        if not entries:
+            logger.warning(
+                "%s: no document list found (keys: %s)",
+                filename,
+                list(data.keys()) if isinstance(data, dict) else "list",
+            )
+            self._counts[source] = 0
+            return
+        count = 0
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            titol = (
+                entry.get("titol") or entry.get("title") or
+                entry.get("text") or entry.get("nom") or ""
+            ).strip()
+            codi      = (entry.get("codi") or entry.get("id") or entry.get("boe_id") or "").strip()
+            estat_raw = (entry.get("estat") or entry.get("status") or "vigent").lower()
+            if "derog" in estat_raw or "anulad" in estat_raw or "historic" in estat_raw:
+                status = "DEROGADA"
+            else:
+                status = "VIGENT"
+            ref_text = titol or codi
+            if not ref_text:
+                continue
+            catalog_entry = {
+                "status": status, "source": source, "title": titol,
+                "raw_ref": ref_text, "substituted_by": None, "codi": codi,
+            }
+            before = len(self._index)
+            self._index_entry(ref_text, catalog_entry)
+            if codi and codi != ref_text:
+                self._index_entry(codi, catalog_entry)
+            if codi:
+                codi_norm = " ".join(codi.upper().split())
+                self._store_direct(codi_norm, catalog_entry)
+                codi_alt = re.sub(r"[-/]", " ", codi_norm).strip()
+                if codi_alt != codi_norm:
+                    self._store_direct(codi_alt, catalog_entry)
+            if titol and len(titol) >= 10:
+                self._store_direct(titol[:120].upper(), catalog_entry)
+            if len(self._index) > before:
+                count += 1
+        self._counts[source] = count
+        logger.debug("%s: %d entries loaded", source, count)
+
+    def _load_aca(self) -> None:
+        self._load_wrapped("ACA", "normativa_aca", "catalogo_aca.json")
+
+    def _load_cte(self) -> None:
+        self._load_wrapped("CTE", "normativa_cte", "catalogo_cte.json")
+
+    def _load_era(self) -> None:
+        self._load_wrapped("ERA", "normativa_era", "catalogo_era.json")
+
     def _load_all(self) -> None:
         self._index = {}
-        self._counts = {"ANNEXES": 0, "DGC": 0, "ADIF": 0, "ISO": 0, "UNE": 0, "INDUSTRIA": 0}
+        self._counts = {
+            "ANNEXES": 0, "DGC": 0, "ADIF": 0, "ISO": 0, "UNE": 0,
+            "BOE": 0, "INDUSTRIA": 0, "PJCAT": 0, "TERRITORI": 0,
+            "ACA": 0, "CTE": 0, "ERA": 0,
+        }
         self._load_annexes()
         self._load_adif()
         self._load_iso()
         self._load_une()
         self._load_dgc()
+        self._load_boe()
         self._load_industria()
+        self._load_pjcat()
+        self._load_territori()
+        self._load_aca()
+        self._load_cte()
+        self._load_era()
 
     # ─── Public API ───────────────────────────────────────────────────────────
 
@@ -388,6 +625,14 @@ class NormIndex:
             if best:
                 return best
 
+        # Direct key fallback: try raw text as a key (for non-parseable catalog entries)
+        raw_upper = raw_text.strip().upper()
+        if raw_upper in self._index:
+            return self._index[raw_upper]
+        raw_compact = " ".join(raw_upper.split())
+        if raw_compact in self._index:
+            return self._index[raw_compact]
+
         return {
             "status": "PENDENT",
             "source": None,
@@ -426,12 +671,10 @@ if __name__ == "__main__":
     base = sys.argv[1] if len(sys.argv) > 1 else "."
     idx = NormIndex(base)
     s = idx.stats()
-
     src = s["per_source"]
-    print(
-        f"Index carregat: {s['total_indexed']} normes indexades  "
-        f"(DGC: {src['DGC']}, ADIF: {src['ADIF']}, "
-        f"ISO: {src['ISO']}, UNE: {src['UNE']}, "
-        f"ANNEXES: {src['ANNEXES']}, INDUSTRIA: {src.get('INDUSTRIA', 0)})"
-    )
-    print(f"Estat:  {s['per_status']}")
+    total = s["total_indexed"]
+    print(f"Index carregat: {total} normes indexades")
+    for font, n in sorted(src.items()):
+        if n > 0:
+            print(f"  {font}: {n}")
+    print(f"Estat: {s['per_status']}")

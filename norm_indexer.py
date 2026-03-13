@@ -15,12 +15,17 @@ from docx import Document
 from sentence_transformers import SentenceTransformer
 
 
-NORMATIVA_FOLDER = "normativa"
 NORMATIVA_FOLDERS = [
     "normativa_adif",
     "normativa_dgc",
     "normativa_industria",
     "normativa_territori",
+    "normativa_aca",
+    "normativa_boe",
+    "normativa_cte",
+    "normativa_era",
+    "normativa_pjcat",
+    "normativa_une",
 ]
 DB_PATH = "normativa.db"
 CHROMA_PATH = "chroma_db"
